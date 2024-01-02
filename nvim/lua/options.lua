@@ -37,4 +37,4 @@ vim.opt.undofile = true
 -- Set completeopt to have a better completion experience
 vim.opt.completeopt = "menuone,noselect"
 
-vim.wo.signcolumn = "number"
+vim.wo.signcolumn = "yes"

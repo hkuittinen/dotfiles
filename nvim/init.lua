@@ -36,6 +36,9 @@ require("lazy").setup({
 	-- Indentation guides
 	require("plugins.indent-blankline"),
 
+	-- Git related decorations to the gutter
+	require("plugins.gitsigns"),
+
 	-- Close ([{ etc. automatically.
 	require("plugins.nvim-autopairs"),
 
