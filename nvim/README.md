@@ -1,3 +1,5 @@
-# Neovim config
+# Neovim
 
-`~/.config/nvim`
+```
+ln -s ~/Projects/dotfiles/nvim ~/.config/nvim
+```

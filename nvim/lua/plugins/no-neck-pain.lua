@@ -3,7 +3,7 @@ return {
     version = "*",
     config = function()
         require("no-neck-pain").setup({
-            width = 86,
+            width = 90,
             buffers = {
                 wo = {
                     fillchars = "eob: ",
