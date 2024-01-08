@@ -27,6 +27,9 @@ require("lazy").setup({
     -- Statusline
     require("plugins.lualine"),
 
+    -- Navigate between vim and tmux splits
+    require("plugins.vim-tmux-navigator"),
+
     -- Highlight, edit, and navigate code
     require("plugins.treesitter"),
 
