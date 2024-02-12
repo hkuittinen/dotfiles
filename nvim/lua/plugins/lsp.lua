@@ -1,12 +1,12 @@
 local servers = {
-    -- lua_ls = {},
-    -- tsserver = {},
+    lua_ls = {},
+    tsserver = {},
 }
 
 local tools = {
-    -- stylua = {},
-    -- prettier = {},
-    -- eslint_d = {},
+    stylua = {},
+    prettier = {},
+    eslint_d = {},
 }
 
 return {

@@ -1,0 +1,7 @@
+daemonize
+color=000000
+font=monospace
+font-size=18
+indicator-idle-visible
+indicator-radius=64
+show-failed-attempts

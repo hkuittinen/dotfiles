@@ -1,4 +1,6 @@
 {
+    "bar_id": "bar-0",
+    "ipc": true,
     "layer": "top",
     "modules-left": [
         "sway/workspaces",
@@ -6,17 +8,25 @@
     "modules-center": [
     ],
     "modules-right": [
-        "network",
+        "sway/language",
+        "pulseaudio",
+        "backlight",
         "bluetooth",
+        "network",
         "battery",
-        "clock"
+        "clock",
     ],
-    "network": {
-        "format": "{󰈁 ifname}",
-        "format-wifi": "󰈁 {essid} ({signalStrength}%)",
-        "format-ethernet": "󰈁 {ipaddr}/{cidr}",
-        "format-disconnected": "󰈁 -", 
-        "tooltip-format": "Network" 
+    "sway/language": {
+        "format": "{short}",
+        "tooltip-format": "Keyboard layout" 
+    },
+    "pulseaudio": {
+        "format": "Volume: {volume}%",
+        "tooltip-format": "Volume" 
+    },
+    "backlight": {
+        "format": "Brightness: {percent}%",
+        "tooltip-format": "Brightness" 
     },
     "bluetooth": {
         "format": " {status}",
@@ -25,12 +35,19 @@
         "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{device_enumerate}",
         "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}"
     },
+    "network": {
+        "format": "󰈁 {ifname}",
+        "format-wifi": "󰈁 {essid}",
+        "format-ethernet": "󰈁 {ipaddr}/{cidr}",
+        "format-disconnected": "󰈁 -", 
+        "tooltip-format": "Network" 
+    },
     "battery": {
         "format": " {capacity}%",
         "tooltip-format": "Battery" 
     },
     "clock": {
-        "format-alt": "{:%a, %d. %b  %H:%M}",
+        "format-alt": "{:%a %d.%m.%Y %H:%M}",
         "tooltip-format": "Clock" 
     }
 }

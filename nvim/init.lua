@@ -39,6 +39,9 @@ require("lazy").setup({
     -- Indentation guides
     require("plugins.indent-blankline"),
 
+    -- Detect tabstop and shiftwidth automatically
+    "tpope/vim-sleuth",
+
     -- Git related decorations to the gutter
     require("plugins.gitsigns"),
 
