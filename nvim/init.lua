@@ -59,4 +59,7 @@ require("lazy").setup({
 
     -- Center the currently focused buffer
     require("plugins.no-neck-pain"),
+
+    -- Take notes
+    require("plugins.neorg"),
 })
