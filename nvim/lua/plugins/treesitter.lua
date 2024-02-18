@@ -2,6 +2,7 @@ return {
     "nvim-treesitter/nvim-treesitter",
     dependencies = {
         "nvim-treesitter/nvim-treesitter-textobjects",
+        "windwp/nvim-ts-autotag",
     },
     build = ":TSUpdate",
     config = function()
@@ -16,6 +17,7 @@ return {
                     "bash",
                     "python",
                     "tsx",
+                    "css",
                     "javascript",
                     "typescript",
                     "html",
@@ -26,6 +28,10 @@ return {
                     additional_vim_regex_highlighting = false,
                 },
                 indent = {
+                    enable = true,
+                },
+                -- "windwp/nvim-ts-autotag",
+                autotag = {
                     enable = true,
                 },
             })

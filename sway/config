@@ -190,6 +190,7 @@ bindsym $mod+r mode "resize"
 bar {
     swaybar_command waybar
     position top
+    mode invisible
 }
 # Toggle bar mode hide/show
 bindsym $mod+m exec '[ "$(swaymsg -t get_bar_config bar-0 | jq -r ".mode")" = "dock" ] && swaymsg bar mode invisible || swaymsg bar mode dock'

@@ -21,7 +21,11 @@ vim.keymap.set("n", "<leader>Y", [["+Y]])
 vim.keymap.set("n", "<leader>s", ":update<cr>")
 
 -- Close curret buffer
-vim.keymap.set("n", "<leader>w", ":bd<cr>")
+vim.keymap.set("n", "<leader>x", ":bd<cr>")
+
+-- Tabs
+vim.keymap.set("n", "<leader>tc", ":tabclose<cr>")
+vim.keymap.set("n", "<leader>tn", ":tabnew<cr>")
 
 -- Quit window
 vim.keymap.set("n", "<leader>q", ":q<cr>")
@@ -31,4 +35,15 @@ vim.keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = tr
 vim.keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
 -- Open netrw file explorer
-vim.keymap.set("n", "<leader>t", "<cmd>Explore<cr>")
+vim.keymap.set("n", "<leader>e", "<cmd>Explore<cr>")
+
+-- Toggle statusline
+vim.keymap.set("n", "<leader>m", function()
+    if vim.opt.laststatus:get() == 3 then
+        vim.opt.laststatus = 0
+        vim.opt.cmdheight = 0
+    else
+        vim.opt.laststatus = 3
+        vim.opt.cmdheight = 1
+    end
+end)

@@ -18,14 +18,11 @@ vim.opt.rtp:prepend(lazypath)
 
 -- Setup plugins
 require("lazy").setup({
-    -- Theme
+    -- Theme and statusline
     require("plugins.active-theme"),
 
     -- Add a layer of ✨bling✨ and configuration to netrw
     require("plugins.netrw"),
-
-    -- Statusline
-    require("plugins.lualine"),
 
     -- Navigate between vim and tmux splits
     require("plugins.vim-tmux-navigator"),
@@ -42,8 +39,8 @@ require("lazy").setup({
     -- Detect tabstop and shiftwidth automatically
     "tpope/vim-sleuth",
 
-    -- Git related decorations to the gutter
-    require("plugins.gitsigns"),
+    -- Git related plugins
+    require("plugins.git"),
 
     -- Close ([{ etc. automatically.
     require("plugins.nvim-autopairs"),

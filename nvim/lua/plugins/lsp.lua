@@ -5,7 +5,7 @@ local servers = {
 
 local tools = {
     stylua = {},
-    prettier = {},
+    prettierd = {},
     eslint_d = {},
 }
 
@@ -66,6 +66,9 @@ return {
                 end,
             })
 
+            vim.diagnostic.config({
+                virtual_text = false,
+            })
             vim.keymap.set("n", "<space>d", vim.diagnostic.open_float)
 
             vim.api.nvim_create_autocmd("LspAttach", {
@@ -74,6 +77,7 @@ return {
                     local opts = { buffer = ev.buf }
                     vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
                     vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+                    vim.keymap.set("n", "C-k", vim.lsp.buf.signature_help, opts)
                     vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts)
                     vim.keymap.set({ "n" }, "<leader>rn", vim.lsp.buf.rename, opts)
                 end,
@@ -102,7 +106,7 @@ return {
                     null_ls.builtins.formatting.stylua,
 
                     -- JavaScript/TypeScript
-                    null_ls.builtins.formatting.prettier,
+                    null_ls.builtins.formatting.prettierd,
                     null_ls.builtins.diagnostics.eslint_d,
                 },
                 on_attach = function(client, bufnr)
