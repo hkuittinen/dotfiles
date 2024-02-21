@@ -36,7 +36,14 @@ return {
     {
         "sindrets/diffview.nvim",
         config = function()
-            require("diffview").setup({})
+            require("diffview").setup({
+                file_panel = {
+                    listing_style = "list", -- 'list' or 'tree'
+                    win_config = {
+                        width = 48,
+                    },
+                },
+            })
             vim.keymap.set("n", "<leader>gd", ":DiffviewOpen<cr>")
         end,
     },
@@ -45,7 +52,7 @@ return {
         "NeogitOrg/neogit",
         dependencies = {
             "nvim-lua/plenary.nvim",         -- required
-            "sindrets/diffview.nvim",        -- optional - Diff integration
+            "sindrets/diffview.nvim",        -- optional
             "nvim-telescope/telescope.nvim", -- optional
         },
         config = function()
