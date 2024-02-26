@@ -1,12 +1,13 @@
 local servers = {
     lua_ls = {},
     tsserver = {},
+    eslint = {},
+    svelte = {},
 }
 
 local tools = {
     stylua = {},
     prettierd = {},
-    eslint_d = {},
 }
 
 return {
@@ -75,6 +76,7 @@ return {
                 group = vim.api.nvim_create_augroup("UserLspConfig", {}),
                 callback = function(ev)
                     local opts = { buffer = ev.buf }
+                    vim.keymap.set("n", "<CR>", vim.lsp.buf.definition, opts)
                     vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
                     vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
                     vim.keymap.set("n", "C-k", vim.lsp.buf.signature_help, opts)
@@ -94,7 +96,9 @@ return {
     {
         "nvimtools/none-ls.nvim",
         dependencies = {
-            { "nvim-lua/plenary.nvim" },
+            {
+                "nvim-lua/plenary.nvim",
+            },
         },
         config = function()
             local null_ls = require("null-ls") -- "null-ls" for historical reasons
@@ -106,8 +110,9 @@ return {
                     null_ls.builtins.formatting.stylua,
 
                     -- JavaScript/TypeScript
-                    null_ls.builtins.formatting.prettierd,
-                    null_ls.builtins.diagnostics.eslint_d,
+                    null_ls.builtins.formatting.prettierd.with({
+                        extra_filetypes = { "svelte" },
+                    }),
                 },
                 on_attach = function(client, bufnr)
                     -- Format on save

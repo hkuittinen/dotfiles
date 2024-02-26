@@ -26,7 +26,7 @@ vim.opt.termguicolors = true
 
 vim.opt.pumheight = 10
 
-vim.opt.colorcolumn = "80"
+vim.opt.colorcolumn = "81"
 
 vim.opt.laststatus = 3
 

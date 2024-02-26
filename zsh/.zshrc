@@ -22,6 +22,10 @@ _comp_options+=(globdots) # Include hidden files.
 alias {vi,vim}="nvim"
 alias lgit="lazygit"
 
+# Path
+path+=("$HOME/Projects/scripts")
 # fnm (Node version manager)
-export PATH="/home/hkuittinen/.local/share/fnm:$PATH"
+path+=("$HOME/.local/share/fnm")
+export PATH
+
 eval "`fnm env`"

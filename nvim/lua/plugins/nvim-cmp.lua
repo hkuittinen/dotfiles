@@ -78,6 +78,6 @@ return {
                 cmp_enabled = true
             end
         end, {})
-        vim.keymap.set("n", "<leader>c", ":ToggleBufferCmp<cr>")
+        vim.keymap.set("n", "<leader>C", ":ToggleBufferCmp<cr>")
     end,
 }
