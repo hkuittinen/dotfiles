@@ -11,12 +11,8 @@ unsetopt BEEP
 setopt SHARE_HISTORY 
 setopt HIST_IGNORE_DUPS 
 
-# Basic auto/tab complete:
-autoload -U compinit
-zstyle ':completion:*' menu select
-zmodload zsh/complist
-compinit
-_comp_options+=(globdots) # Include hidden files.
+# Completion
+source "$ZDOTDIR/completion.zsh"
 
 # Aliases
 alias {vi,vim}="nvim"

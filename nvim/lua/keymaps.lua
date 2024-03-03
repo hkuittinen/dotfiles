@@ -27,10 +27,6 @@ vim.keymap.set("n", "<leader>tn", ":tabnew<cr>")
 -- Quit window
 vim.keymap.set("n", "<leader>q", ":q<cr>")
 
--- Remap for dealing with word wrap
-vim.keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
-vim.keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
-
 -- Open netrw file explorer
 vim.keymap.set("n", "<leader>e", "<cmd>Explore<cr>")
 
