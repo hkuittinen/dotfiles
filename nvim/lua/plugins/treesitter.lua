@@ -21,6 +21,7 @@ return {
                     "javascript",
                     "typescript",
                     "html",
+                    "svelte",
                 },
                 auto_install = true,
                 highlight = {

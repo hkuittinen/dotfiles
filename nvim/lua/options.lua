@@ -18,7 +18,8 @@ vim.opt.shiftwidth = 4
 
 vim.opt.virtualedit = "block"
 
-vim.opt.hlsearch = false
+vim.opt.hlsearch = true
+vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 

@@ -68,6 +68,9 @@ input "76:613:Apple_Inc._Magic_Trackpad_2" {
     # accel_profile "flat"
 }
 
+# Hide cursor automatically 
+seat * hide_cursor 3000
+
 ### Key bindings
 #
 # Lock 
