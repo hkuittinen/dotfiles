@@ -17,6 +17,7 @@ local servers = {
             },
         },
     },
+    html = {},
     tsserver = {},
     eslint = {},
     svelte = {},
