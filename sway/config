@@ -59,8 +59,8 @@ input "type:keyboard" {
     xkb_layout us,fi
     # CapsLock to Esc
     # Swap left Alt and Ctrl keys 
-    # AltGr to toggle between us/fi keyboard layout
-    xkb_options caps:escape,ctrl:swap_lalt_lctl,grp:toggle
+    # Left+right shifts to toggle between us/fi keyboard layout
+    xkb_options caps:escape,ctrl:swap_lalt_lctl,grp:shifts_toggle
 }
 
 input "76:613:Apple_Inc._Magic_Trackpad_2" {
