@@ -19,7 +19,7 @@ alias {vi,vim}="nvim"
 alias lgit="lazygit"
 
 # Path
-path+=("$HOME/Projects/scripts")
+path+=("$HOME/Projects/dotfiles/zsh/scripts")
 # fnm (Node version manager)
 path+=("$HOME/.local/share/fnm")
 export PATH
