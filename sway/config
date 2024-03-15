@@ -76,6 +76,9 @@ bindsym $mod+Escape exec swaylock
 bindsym $mod+Return exec $term
 # Open a web browser
 bindsym $mod+n exec firefox
+# Take screenshots
+bindsym Print exec grimshot --notify save screen
+bindsym Shift+Print	exec grimshot --notify save area
 # Kill focused window
 bindsym $mod+Shift+q kill
 # Start the launcher
