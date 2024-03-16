@@ -7,6 +7,7 @@ fi
 if ! tmux has-session; then
     tmux new-session -d -s dotfiles -c ~/Projects/dotfiles
     tmux new-session -d -s notes -c ~/Notes
+    tmux new-session -d -s terminal -c ~
 fi
 
 if [[ $# -gt 0 ]]; then

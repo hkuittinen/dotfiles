@@ -48,7 +48,7 @@
         "tooltip-format": "Battery" 
     },
     "clock": {
-        "format-alt": "{:%a %d.%m.%Y %H:%M}",
-        "tooltip-format": "Clock" 
+        "format": "{:%a %d.%m.%Y %H:%M}",
+        "tooltip-format": "Date and time" 
     }
 }
