@@ -17,11 +17,3 @@ source "$ZDOTDIR/completion.zsh"
 # Aliases
 alias {vi,vim}="nvim"
 alias lgit="lazygit"
-
-# Path
-path+=("$HOME/Projects/dotfiles/zsh/scripts")
-# fnm (Node version manager)
-path+=("$HOME/.local/share/fnm")
-export PATH
-
-eval "`fnm env`"
