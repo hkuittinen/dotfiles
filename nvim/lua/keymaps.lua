@@ -6,6 +6,18 @@ vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
 -- vim.keymap.set("n", "<C-k>", "<C-w>k")
 -- vim.keymap.set("n", "<C-l>", "<C-w>l")
 
+-- Splits
+vim.keymap.set("n", "<leader>wh", "<cmd>split<CR>")
+vim.keymap.set("n", "<leader>wv", "<cmd>vsplit<CR>")
+vim.keymap.set("n", "<leader>wx", "<cmd>close<CR>")
+vim.keymap.set("n", "<leader>wo", "<cmd>wincmd o<CR>")
+
+vim.keymap.set("n", "=", "<cmd>vertical resize +5<CR>")
+vim.keymap.set("n", "-", "<cmd>vertical resize -5<CR>")
+vim.keymap.set("n", "+", "<cmd>horizontal resize +2<CR>")
+vim.keymap.set("n", "_", "<cmd>horizontal resize -2<CR>")
+vim.keymap.set("n", "<leader>w=", "<cmd>wincmd =<CR>")
+
 -- Center the cursor on navigation
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
