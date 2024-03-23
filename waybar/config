@@ -45,6 +45,9 @@
     "battery": {
         "format": " {capacity}%",
         "format-charging": " {capacity}%",
+        "states": {
+            "critical": 15
+        },
         "tooltip-format": "Battery" 
     },
     "clock": {
