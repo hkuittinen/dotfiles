@@ -17,3 +17,5 @@ source "$ZDOTDIR/completion.zsh"
 # Aliases
 alias {vi,vim}="nvim"
 alias lgit="lazygit"
+alias image="imv"
+alias video="mpv"
