@@ -5,9 +5,8 @@
     "modules-left": [
         "sway/workspaces",
     ],
-    "modules-center": [
-    ],
     "modules-right": [
+        "custom/wf-recorder",
         "sway/language",
         "pulseaudio",
         "backlight",
@@ -16,6 +15,13 @@
         "battery",
         "clock",
     ],
+    "custom/wf-recorder": {
+        "format": "{}",
+        "interval": "once",
+        "signal": 1,
+        "exec-if": "pgrep wf-recorder",
+        "exec": "echo '󰑊 REC'"
+	},
     "sway/language": {
         "format": "{short}",
         "tooltip-format": "Keyboard layout" 

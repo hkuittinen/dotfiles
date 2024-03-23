@@ -23,6 +23,7 @@ window#waybar {
   font-weight: bold;
 }
 
+#custom-wf-recorder,
 #clock,
 #language,
 #pulseaudio,
@@ -31,6 +32,7 @@ window#waybar {
 #network,
 #bluetooth {
   padding: 0 16px;
+  min-width: 24px;
   color: @primary;
 }
 
@@ -44,6 +46,10 @@ tooltip {
 
 tooltip label {
   color: @primary;
+}
+
+#custom-wf-recorder {
+  color: red;
 }
 
 #battery.critical {

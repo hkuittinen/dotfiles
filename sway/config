@@ -1,5 +1,4 @@
 ### Variables
-#
 # Windws/logo key. 
 set $mod Mod4
 # Home row direction keys, like vim
@@ -14,9 +13,9 @@ for_window [app_id="^launcher$"] floating enable, sticky enable, resize set 30 p
 set $menu exec $term -a launcher -e /home/hkuittinen/.config/sway/add-ons/sway-launcher-desktop/sway-launcher-desktop.sh 
 
 ### Style
-#
 default_border pixel 1
-set $border_color #666666
+# set $border_color #666666
+set $border_color #4c7899
 # Property: border background text indicator child_border
 client.focused $border_color #000000 $border_color $border_color $border_color 
 gaps inner 12
@@ -25,7 +24,6 @@ gaps inner 12
 # smart_gaps inverse_outer
 
 ### Output configuration
-#
 # Clamshell Mode
 # Get laptop output id: swaymsg -t get_outputs
 set $laptop eDP-1
@@ -36,7 +34,6 @@ bindswitch --reload --locked lid:off output $laptop enable
 output * bg #333333 solid_color
 
 ### Idle configuration
-#
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when
 # resumed. It will also lock your screen before your computer goes to sleep.
@@ -46,7 +43,6 @@ exec swayidle -w \
          before-sleep 'swaylock'
 
 ### Input configuration
-#
 # Get the names of inputs by running: swaymsg -t get_inputs.
 #
 # Laptop touchpad
@@ -74,17 +70,20 @@ input "76:617:Hiiri" {
 }
 
 ### Key bindings
-#
 # Lock 
 bindsym $mod+Escape exec swaylock
 # Open a terminal
 bindsym $mod+Return exec $term
 # Open a web browser
 bindsym $mod+n exec firefox
+
 # Take screenshots
 set $screenshots_file "$HOME/Pictures/screenshots/$(date +"%Y-%m-%dT%H:%M:%S").png"
-bindsym Print exec grimshot --notify save screen $screenshots_file
-bindsym Shift+Print exec grimshot --notify save area $screenshots_file
+bindsym Print+s exec grimshot --notify save screen $screenshots_file
+bindsym Print+a exec grimshot --notify save area $screenshots_file
+# Record screen
+bindsym Print+r exec "record-screen.zsh"
+
 # Kill focused window
 bindsym $mod+Shift+q kill
 # Start the launcher
@@ -118,7 +117,6 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 ## Workspaces:
-#
 # Switch to workspace
 bindsym $mod+1 workspace number 1
 bindsym $mod+2 workspace number 2
@@ -145,7 +143,6 @@ bindsym $mod+Shift+0 move container to workspace number 10
 # We just use 1-10 as the default.
 
 ## Layout stuff:
-#
 # Change split direction vertical/horizontal.
 bindsym $mod+v splith
 bindsym $mod+b splitv
@@ -164,7 +161,6 @@ bindsym $mod+f fullscreen
 # bindsym $mod+a focus parent
 
 ### Scratchpad:
-#
 # Sway has a "scratchpad", which is a bag of holding for windows.
 # You can send windows there and get them back later.
 #
@@ -176,7 +172,6 @@ bindsym $mod+f fullscreen
 # bindsym $mod+minus scratchpad show
 
 ### Resizing containers:
-#
 mode "resize" {
     bindsym $left resize grow width 10px
     bindsym $down resize shrink height 10px
@@ -195,17 +190,15 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 ### Status Bar:
-#
 bar {
     swaybar_command waybar
     position top
-    mode invisible
+    mode dock
 }
 # Toggle bar mode hide/show
 bindsym $mod+m exec '[ "$(swaymsg -t get_bar_config bar-0 | jq -r ".mode")" = "dock" ] && swaymsg bar mode invisible || swaymsg bar mode dock'
 
 ### Function keys
-#
 # Volume
 bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
 bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
