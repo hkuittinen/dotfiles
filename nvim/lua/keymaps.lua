@@ -7,15 +7,21 @@ vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
 -- vim.keymap.set("n", "<C-l>", "<C-w>l")
 
 -- Splits
+---- Create
 vim.keymap.set("n", "<leader>wh", "<cmd>split<CR>")
 vim.keymap.set("n", "<leader>wv", "<cmd>vsplit<CR>")
 vim.keymap.set("n", "<leader>wx", "<cmd>close<CR>")
+---- Move
+vim.keymap.set("n", "<leader>wH", "<cmd>wincmd H<CR>")
+vim.keymap.set("n", "<leader>wJ", "<cmd>wincmd J<CR>")
+vim.keymap.set("n", "<leader>wK", "<cmd>wincmd K<CR>")
+vim.keymap.set("n", "<leader>wL", "<cmd>wincmd L<CR>")
 vim.keymap.set("n", "<leader>wo", "<cmd>wincmd o<CR>")
-
+---- Resize
 vim.keymap.set("n", "=", "<cmd>vertical resize +5<CR>")
 vim.keymap.set("n", "-", "<cmd>vertical resize -5<CR>")
-vim.keymap.set("n", "+", "<cmd>horizontal resize +2<CR>")
-vim.keymap.set("n", "_", "<cmd>horizontal resize -2<CR>")
+vim.keymap.set("n", "+", "<cmd>horizontal resize +5<CR>")
+vim.keymap.set("n", "_", "<cmd>horizontal resize -5<CR>")
 vim.keymap.set("n", "<leader>w=", "<cmd>wincmd =<CR>")
 
 -- Center the cursor on navigation
@@ -33,8 +39,8 @@ vim.keymap.set("n", "<leader>s", ":update<cr>")
 vim.keymap.set("n", "<leader>x", ":bd<cr>")
 
 -- Tabs
-vim.keymap.set("n", "<leader>tc", ":tabclose<cr>")
-vim.keymap.set("n", "<leader>tn", ":tabnew<cr>")
+vim.keymap.set("n", "<leader>tx", ":tabclose<cr>")
+vim.keymap.set("n", "<leader>tc", ":tabnew<cr>")
 
 -- Quit window
 vim.keymap.set("n", "<leader>q", ":q<cr>")
