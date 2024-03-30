@@ -1,33 +1,37 @@
 return {
-    "nvim-neorg/neorg",
-    dependencies = { "nvim-lua/plenary.nvim" },
-    build = ":Neorg sync-parsers",
-    tag = "v7.0.0",
-    lazy = true, -- enable lazy load
-    ft = "norg", -- lazy load on file type
-    cmd = "Neorg", -- lazy load on command
-    config = function()
-        require("neorg").setup({
-            load = {
-                ["core.defaults"] = {}, -- Loads default behaviour
-                ["core.concealer"] = {}, -- Adds pretty icons to your documents
-                ["core.dirman"] = { -- Manages Neorg workspaces
-                    config = {
-                        workspaces = {
-                            notes = "~/Notes",
+    {
+        "vhyrro/luarocks.nvim",
+        priority = 1000,
+        config = true,
+    },
+    {
+        "nvim-neorg/neorg",
+        dependencies = { "luarocks.nvim" },
+        lazy = false,  -- Disable lazy loading as some `lazy.nvim` distributions set `lazy = true` by default
+        version = "*", -- Pin Neorg to the latest stable release
+        config = function()
+            require("neorg").setup({
+                load = {
+                    ["core.defaults"] = {},  -- Loads default behaviour
+                    ["core.concealer"] = {}, -- Adds pretty icons to your documents
+                    ["core.dirman"] = {      -- Manages Neorg workspaces
+                        config = {
+                            workspaces = {
+                                notes = "~/Notes",
+                            },
+                            default_workspace = "notes",
                         },
-                        default_workspace = "notes",
                     },
-                },
-                ["core.completion"] = {
-                    config = {
-                        engine = "nvim-cmp",
+                    ["core.completion"] = {
+                        config = {
+                            engine = "nvim-cmp",
+                        },
                     },
+                    ["core.export"] = {},
                 },
-                ["core.export"] = {},
-            },
-        })
-        vim.wo.foldlevel = 99
-        vim.wo.conceallevel = 2
-    end,
+            })
+            vim.wo.foldlevel = 99
+            vim.wo.conceallevel = 2
+        end,
+    },
 }
