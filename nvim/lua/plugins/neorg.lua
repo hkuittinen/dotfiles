@@ -12,9 +12,19 @@ return {
         config = function()
             require("neorg").setup({
                 load = {
-                    ["core.defaults"] = {},  -- Loads default behaviour
-                    ["core.concealer"] = {}, -- Adds pretty icons to your documents
-                    ["core.dirman"] = {      -- Manages Neorg workspaces
+                    ["core.defaults"] = {}, -- Loads default behaviour
+                    ["core.concealer"] = {  -- Adds pretty icons to your documents
+                        config = {
+                            icons = {
+                                todo = {
+                                    undone = {
+                                        icon = " ",
+                                    },
+                                },
+                            },
+                        },
+                    },
+                    ["core.dirman"] = { -- Manages Neorg workspaces
                         config = {
                             workspaces = {
                                 notes = "~/Notes",
