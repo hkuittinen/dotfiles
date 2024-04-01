@@ -60,7 +60,7 @@ input "type:keyboard" {
 }
 
 input "76:613:Apple_Inc._Magic_Trackpad_2" {
-    pointer_accel 0.8 
+    pointer_accel 1.0
     # accel_profile "flat"
 }
 
