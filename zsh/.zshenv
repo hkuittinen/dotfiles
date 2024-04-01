@@ -1,6 +1,11 @@
 export ZDOTDIR="$HOME/.config/zsh"
+export HISTFILE="$ZDOTDIR/.zhistory"
+export HISTSIZE=1000
+export SAVEHIST=1000
+
 export EDITOR="nvim"
 export VISUAL="nvim"
+
 export ELECTRON_OZONE_PLATFORM_HINT="wayland"
 
 path+=("$HOME/Projects/dotfiles/zsh/scripts")
