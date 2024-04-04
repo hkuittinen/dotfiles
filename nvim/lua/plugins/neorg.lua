@@ -40,8 +40,10 @@ return {
                     ["core.export"] = {},
                 },
             })
-            vim.wo.foldlevel = 99
-            vim.wo.conceallevel = 2
+            vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
+                pattern = { "*.norg" },
+                command = "set conceallevel=3",
+            })
         end,
     },
 }

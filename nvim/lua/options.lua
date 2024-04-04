@@ -40,5 +40,7 @@ vim.opt.completeopt = "menuone,noselect"
 
 vim.opt.signcolumn = "yes"
 
+vim.opt.foldlevel = 99
+
 -- vim.opt.updatetime = 250
 -- vim.opt.timeoutlen = 300
