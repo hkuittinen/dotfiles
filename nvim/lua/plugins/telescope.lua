@@ -55,6 +55,6 @@ return {
         vim.keymap.set("n", "<leader>gs", builtin.git_status, {})
         vim.keymap.set("n", "<leader>lg", builtin.live_grep, {})
         vim.keymap.set("n", "<leader>gw", builtin.grep_string, {})
-        vim.keymap.set("n", "<leader><space>", builtin.buffers, {})
+        vim.keymap.set("n", "<leader>b", builtin.buffers, {})
     end,
 }

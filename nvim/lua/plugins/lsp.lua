@@ -89,6 +89,7 @@ return {
             vim.diagnostic.config({
                 virtual_text = false,
                 float = {
+                    source = true,
                     width = 80,
                     border = _border,
                 },
