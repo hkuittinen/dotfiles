@@ -22,10 +22,16 @@ return {
         },
     },
     config = function()
+        local actions = require("telescope.actions")
         require("telescope").setup({
             defaults = {
                 layout_strategy = "vertical",
                 file_ignore_patterns = { ".git/", "node_modules" },
+                mappings = {
+                    i = {
+                        ["<C-y>"] = actions.select_default,
+                    },
+                },
             },
             pickers = {
                 find_files = {
