@@ -54,6 +54,9 @@ require("lazy").setup({
     -- LSP related configs
     require("plugins.lsp"),
 
+    -- Clojure
+    require("plugins.clojure"),
+
     -- Switch files quickly
     require("plugins.harpoon"),
 

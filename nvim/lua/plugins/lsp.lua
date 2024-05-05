@@ -139,6 +139,9 @@ return {
                     null_ls.builtins.formatting.prettierd.with({
                         extra_filetypes = { "svelte" },
                     }),
+
+                    -- Clojure
+                    null_ls.builtins.formatting.cljstyle,
                 },
                 on_attach = function(client, bufnr)
                     -- Format on save
