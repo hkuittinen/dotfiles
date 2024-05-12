@@ -1,4 +1,5 @@
 return {
+    -- Interactive REPL development.
     "Olical/conjure",
     ft = { "clojure" },
     -- [Optional] cmp-conjure for cmp

@@ -45,6 +45,9 @@ require("lazy").setup({
     -- Close ([{ etc. automatically.
     require("plugins.nvim-autopairs"),
 
+    -- Rainbow parentheses
+    -- "HiPhish/rainbow-delimiters.nvim",
+
     -- Toggle comments
     require("plugins.comment"),
 
