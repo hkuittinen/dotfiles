@@ -45,6 +45,9 @@ require("lazy").setup({
     -- Close ([{ etc. automatically.
     require("plugins.nvim-autopairs"),
 
+    -- Surround with ([{ etc. easily.
+    require("plugins.nvim-surround"),
+
     -- Rainbow parentheses
     -- "HiPhish/rainbow-delimiters.nvim",
 
