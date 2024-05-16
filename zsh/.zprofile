@@ -9,3 +9,6 @@ fi
 
 # Node version manager
 eval "$(fnm env)"
+
+# Fuzzy finder
+source <(fzf --zsh)
