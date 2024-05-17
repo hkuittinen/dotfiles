@@ -24,6 +24,9 @@ require("lazy").setup({
     -- Add a layer of ✨bling✨ and configuration to netrw
     require("plugins.netrw"),
 
+    -- Split windows and the project drawer go together like oil and vinegar
+    require("plugins.oil"),
+
     -- Navigate between vim and tmux splits
     require("plugins.vim-tmux-navigator"),
 

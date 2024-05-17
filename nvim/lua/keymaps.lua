@@ -46,7 +46,8 @@ vim.keymap.set("n", "<leader>x", ":bd<cr>")
 vim.keymap.set("n", "<leader>q", ":q<cr>")
 
 -- Open netrw file explorer
-vim.keymap.set("n", "<leader>t", "<cmd>Explore<cr>")
+-- NOTE: Using oil.nvim currently.
+-- vim.keymap.set("n", "<leader>t", "<cmd>Explore<cr>")
 
 -- Toggle statusline
 vim.keymap.set("n", "<leader>m", function()
