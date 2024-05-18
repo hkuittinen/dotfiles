@@ -33,31 +33,35 @@ return {
         end,
     },
     -- Git diff view
-    {
-        "sindrets/diffview.nvim",
-        config = function()
-            require("diffview").setup({
-                file_panel = {
-                    listing_style = "list", -- 'list' or 'tree'
-                    win_config = {
-                        width = 48,
-                    },
-                },
-            })
-            vim.keymap.set("n", "<leader>gd", ":DiffviewOpen<cr>")
-        end,
-    },
+    -- {
+    --     "sindrets/diffview.nvim",
+    --     config = function()
+    --         require("diffview").setup({
+    --             file_panel = {
+    --                 listing_style = "list", -- 'list' or 'tree'
+    --                 win_config = {
+    --                     width = 48,
+    --                 },
+    --             },
+    --         })
+    --         vim.keymap.set("n", "<leader>gd", ":DiffviewOpen<cr>")
+    --     end,
+    -- },
     -- Git status etc.
     {
         "NeogitOrg/neogit",
         branch = "nightly",
         dependencies = {
-            "nvim-lua/plenary.nvim",         -- required
-            "sindrets/diffview.nvim",        -- optional
+            "nvim-lua/plenary.nvim", -- required
+            -- "sindrets/diffview.nvim", -- optional
             "nvim-telescope/telescope.nvim", -- optional
         },
         config = function()
-            require("neogit").setup({})
+            require("neogit").setup({
+                -- integrations = {
+                -- diffview = true,
+                -- },
+            })
             vim.keymap.set("n", "<leader>gs", ":Neogit<cr>")
         end,
     },

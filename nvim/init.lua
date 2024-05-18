@@ -22,7 +22,8 @@ require("lazy").setup({
     require("plugins.active-theme"),
 
     -- Add a layer of ✨bling✨ and configuration to netrw
-    require("plugins.netrw"),
+    -- NOTE: Using oil.vim currently.
+    -- require("plugins.netrw"),
 
     -- Split windows and the project drawer go together like oil and vinegar
     require("plugins.oil"),

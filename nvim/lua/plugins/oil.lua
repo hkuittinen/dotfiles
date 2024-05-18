@@ -7,6 +7,6 @@ return {
                 show_hidden = true,
             },
         })
-        vim.keymap.set("n", "<leader>t", "<cmd>Oil<cr>")
+        vim.keymap.set("n", "<leader>o", "<cmd>Oil<cr>")
     end,
 }
