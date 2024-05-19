@@ -13,7 +13,6 @@ local servers = {
                 completion = {
                     callSnippet = "Replace",
                 },
-                -- diagnostics = { disable = { 'missing-fields' } },
             },
         },
     },
@@ -123,47 +122,21 @@ return {
             -- })
         end,
     },
-    -- Formatters and linters
+    -- Formatters
     {
-        "nvimtools/none-ls.nvim",
-        dependencies = {
-            {
-                "nvim-lua/plenary.nvim",
-            },
-        },
+        "stevearc/conform.nvim",
         config = function()
-            local null_ls = require("null-ls") -- "null-ls" for historical reasons
-            local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
-
-            null_ls.setup({
-                sources = {
-                    -- Lua
-                    null_ls.builtins.formatting.stylua,
-
-                    -- JavaScript/TypeScript
-                    null_ls.builtins.formatting.prettierd.with({
-                        extra_filetypes = { "svelte" },
-                    }),
-
-                    -- Clojure
-                    null_ls.builtins.formatting.cljstyle,
+            require("conform").setup({
+                format_on_save = {
+                    timeout_ms = 500,
+                    lsp_fallback = false,
                 },
-                on_attach = function(client, bufnr)
-                    -- Format on save
-                    if client.supports_method("textDocument/formatting") then
-                        vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
-                        vim.api.nvim_create_autocmd("BufWritePre", {
-                            group = augroup,
-                            buffer = bufnr,
-                            callback = function()
-                                vim.lsp.buf.format({ async = false })
-                            end,
-                        })
-                    end
-                end,
+                formatters_by_ft = {
+                    lua = { "stylua" },
+                    javascript = { { "prettierd" } },
+                    clojure = { "cljstyle" },
+                },
             })
-
-            vim.keymap.set("n", "<leader>gf", vim.lsp.buf.format, {})
         end,
     },
 }
