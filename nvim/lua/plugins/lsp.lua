@@ -133,7 +133,10 @@ return {
                 },
                 formatters_by_ft = {
                     lua = { "stylua" },
-                    javascript = { { "prettierd" } },
+                    javascript = { "prettierd" },
+                    javascriptreact = { "prettierd" },
+                    typescript = { "prettierd" },
+                    typescriptreact = { "prettierd" },
                     clojure = { "cljstyle" },
                 },
             })
