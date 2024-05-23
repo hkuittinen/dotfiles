@@ -1,3 +1,15 @@
+local clojure_iskeyword_group = vim.api.nvim_create_augroup("ClojureIsKeyword", { clear = true })
+-- Define the autocmds to remove specific characters from iskeyword
+vim.api.nvim_create_autocmd({ "BufWinEnter", "BufNewFile", "BufRead" }, {
+    pattern = { "*.clj", "*.edn" },
+    group = clojure_iskeyword_group,
+    callback = function()
+        vim.opt_local.iskeyword:remove(".")
+        vim.opt_local.iskeyword:remove("/")
+        -- vim.opt_local.iskeyword:remove("-")
+    end,
+})
+
 return {
     -- Interactive REPL development.
     "Olical/conjure",
