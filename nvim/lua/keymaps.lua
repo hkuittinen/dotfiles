@@ -39,7 +39,7 @@ vim.keymap.set("n", "<leader>s", ":update<cr>")
 vim.keymap.set("n", "<leader>x", ":bd<cr>")
 
 -- Tabs
--- vim.keymap.set("n", "<leader>tx", ":tabclose<cr>")
+vim.keymap.set("n", "<leader>X", ":tabclose<cr>")
 -- vim.keymap.set("n", "<leader>tc", ":tabnew<cr>")
 
 -- Quit window
