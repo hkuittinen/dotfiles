@@ -23,6 +23,7 @@ return {
     },
     config = function()
         local actions = require("telescope.actions")
+        local actions_state = require("telescope.actions.state")
         require("telescope").setup({
             defaults = {
                 layout_strategy = "vertical",
@@ -30,6 +31,13 @@ return {
                 mappings = {
                     i = {
                         ["<C-y>"] = actions.select_default,
+                    },
+                    n = {
+                        ["p"] = function(prompt_bufnr)
+                            local current_picker = actions_state.get_current_picker(prompt_bufnr)
+                            local text = vim.fn.getreg("0"):gsub("\n", " ")
+                            current_picker:set_prompt(text, false)
+                        end,
                     },
                 },
             },
