@@ -1,4 +1,11 @@
 return {
+    -- Git wrapper
+    {
+        "tpope/vim-fugitive",
+        config = function()
+            vim.keymap.set("n", "<leader>gs", ":Git<cr>")
+        end,
+    },
     -- Git related decorations to the gutter
     {
         "lewis6991/gitsigns.nvim",
@@ -69,23 +76,6 @@ return {
                 },
             })
             vim.keymap.set("n", "<leader>gd", ":DiffviewOpen<cr>")
-        end,
-    },
-    -- Git status etc.
-    {
-        "NeogitOrg/neogit",
-        dependencies = {
-            "nvim-lua/plenary.nvim", -- required
-            "sindrets/diffview.nvim", -- optional
-            "nvim-telescope/telescope.nvim", -- optional
-        },
-        config = function()
-            require("neogit").setup({
-                integrations = {
-                    diffview = true,
-                },
-            })
-            vim.keymap.set("n", "<leader>gs", ":Neogit<cr>")
         end,
     },
 }
