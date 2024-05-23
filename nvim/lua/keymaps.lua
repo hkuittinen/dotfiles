@@ -33,17 +33,17 @@ vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
 vim.keymap.set("n", "<leader>Y", [["+Y]])
 
 -- Save file
-vim.keymap.set("n", "<leader>s", ":update<cr>")
+vim.keymap.set("n", "<leader>s", "<cmd>update<CR>")
 
 -- Close curret buffer
-vim.keymap.set("n", "<leader>x", ":bd<cr>")
+vim.keymap.set("n", "<leader>x", "<cmd>bd<CR>")
 
 -- Tabs
-vim.keymap.set("n", "<leader>X", ":tabclose<cr>")
--- vim.keymap.set("n", "<leader>tc", ":tabnew<cr>")
+vim.keymap.set("n", "<leader>X", "<cmd>tabclose<CR>")
+-- vim.keymap.set("n", "<leader>tc", "<cmd>tabnew<CR>")
 
 -- Quit window
-vim.keymap.set("n", "<leader>q", ":q<cr>")
+vim.keymap.set("n", "<leader>q", "<cmd>q<CR>")
 
 -- Open netrw file explorer
 -- NOTE: Using oil.nvim currently.

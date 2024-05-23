@@ -3,7 +3,7 @@ return {
     {
         "tpope/vim-fugitive",
         config = function()
-            vim.keymap.set("n", "<leader>gs", ":Git<cr>")
+            vim.keymap.set("n", "<leader>gs", "<cmd>Git<CR>")
         end,
     },
     -- Git related decorations to the gutter
@@ -75,7 +75,7 @@ return {
                     },
                 },
             })
-            vim.keymap.set("n", "<leader>gd", ":DiffviewOpen<cr>")
+            vim.keymap.set("n", "<leader>gd", "<cmd>DiffviewOpen<CR>")
         end,
     },
 }
