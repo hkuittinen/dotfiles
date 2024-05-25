@@ -3,7 +3,7 @@ return {
     {
         "tpope/vim-fugitive",
         config = function()
-            vim.keymap.set("n", "<leader>gs", "<cmd>Git<CR>")
+            vim.keymap.set("n", "<leader>G", "<cmd>Git<CR>")
         end,
     },
     -- Git related decorations to the gutter
@@ -30,11 +30,8 @@ return {
                     end
 
                     -- Actions
-                    map("n", "<leader>gh", gs.preview_hunk)
-                    -- map("n", "<leader>dt", gs.diffthis)
-                    map("n", "<leader>gb", function()
-                        gs.blame_line({ full = true })
-                    end)
+                    map("n", "<leader>dh", gs.preview_hunk)
+                    map("n", "<leader>dt", gs.diffthis)
                 end,
             })
         end,
@@ -48,7 +45,7 @@ return {
                 file_panel = {
                     listing_style = "list", -- 'list' or 'tree'
                     win_config = {
-                        width = 48,
+                        width = 35,
                     },
                 },
                 keymaps = {
@@ -75,7 +72,7 @@ return {
                     },
                 },
             })
-            vim.keymap.set("n", "<leader>gd", "<cmd>DiffviewOpen<CR>")
+            vim.keymap.set("n", "<leader>dv", "<cmd>DiffviewOpen<CR>")
         end,
     },
 }

@@ -1,3 +1,13 @@
+function NumberedTabs()
+    local s = ""
+    for i = 1, vim.fn.tabpagenr("$") do
+        local highlight = (i == vim.fn.tabpagenr()) and "%#TabLineSel#" or "%#TabLine#"
+        s = s .. highlight .. " " .. i .. " "
+    end
+    return s
+end
+vim.o.tabline = "%!v:lua.NumberedTabs()"
+
 return {
     -- Status line
     {
