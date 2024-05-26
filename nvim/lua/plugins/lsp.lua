@@ -138,6 +138,8 @@ return {
                     javascriptreact = { "prettierd" },
                     typescript = { "prettierd" },
                     typescriptreact = { "prettierd" },
+                    css = { "prettierd" },
+                    html = { "prettierd" },
                     clojure = { "cljstyle" },
                 },
             })

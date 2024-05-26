@@ -6,7 +6,7 @@ vim.api.nvim_create_autocmd({ "BufWinEnter", "BufNewFile", "BufRead" }, {
     callback = function()
         vim.opt_local.iskeyword:remove(".")
         vim.opt_local.iskeyword:remove("/")
-        -- vim.opt_local.iskeyword:remove("-")
+        vim.opt_local.iskeyword:remove("-")
     end,
 })
 
