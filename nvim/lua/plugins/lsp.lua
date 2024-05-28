@@ -104,7 +104,7 @@ return {
                     end
                     map("gd", require("telescope.builtin").lsp_definitions, "[G]oto [D]efinition")
                     map("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
-                    map("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
+                    map("fr", require("telescope.builtin").lsp_references, "[F]find [R]eferences")
                     map("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
                     map("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
                     map("K", vim.lsp.buf.hover, "Hover Documentation")
