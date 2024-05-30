@@ -64,6 +64,9 @@ require("lazy").setup({
     -- LSP related configs
     require("plugins.lsp"),
 
+    -- Firestore
+    "delphinus/vim-firestore",
+
     -- Clojure
     require("plugins.clojure"),
 
