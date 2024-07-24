@@ -1,12 +1,11 @@
 return {
-    "nvim-treesitter/nvim-treesitter",
-    dependencies = {
-        "nvim-treesitter/nvim-treesitter-textobjects",
-        "windwp/nvim-ts-autotag",
-    },
-    build = ":TSUpdate",
-    config = function()
-        vim.defer_fn(function()
+    {
+        "nvim-treesitter/nvim-treesitter",
+        dependencies = {
+            "nvim-treesitter/nvim-treesitter-textobjects",
+        },
+        build = ":TSUpdate",
+        config = function()
             require("nvim-treesitter.configs").setup({
                 ensure_installed = {
                     "c",
@@ -31,11 +30,19 @@ return {
                 indent = {
                     enable = true,
                 },
-                -- "windwp/nvim-ts-autotag",
-                autotag = {
-                    enable = true,
+            })
+        end,
+    },
+    {
+        "windwp/nvim-ts-autotag",
+        config = function()
+            require("nvim-ts-autotag").setup({
+                opts = {
+                    enable_close = true,
+                    enable_rename = true,
+                    enable_close_on_slash = false,
                 },
             })
-        end, 0)
-    end,
+        end,
+    },
 }
