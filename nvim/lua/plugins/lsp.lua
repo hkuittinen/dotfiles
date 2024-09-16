@@ -18,7 +18,7 @@ local servers = {
     },
     clojure_lsp = {},
     html = {},
-    tsserver = {},
+    ts_ls = {},
     eslint = {},
     svelte = {},
 }
