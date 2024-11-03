@@ -20,6 +20,8 @@ return {
                     "javascript",
                     "typescript",
                     "html",
+                    "markdown",
+                    "markdown_inline",
                     "svelte",
                 },
                 auto_install = true,

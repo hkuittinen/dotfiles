@@ -21,6 +21,7 @@ local servers = {
     ts_ls = {},
     eslint = {},
     svelte = {},
+    marksman = {},
 }
 
 local tools = {
