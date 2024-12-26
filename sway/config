@@ -31,7 +31,8 @@ bindswitch --reload --locked lid:on output $laptop disable
 bindswitch --reload --locked lid:off output $laptop enable
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 # output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
-output * bg #333333 solid_color
+# output * bg #333333 solid_color
+output * bg #000000 solid_color
 
 ### Idle configuration
 # This will lock your screen after 300 seconds of inactivity, then turn off
