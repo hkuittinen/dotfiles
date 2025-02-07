@@ -23,6 +23,7 @@ return {
                     "markdown",
                     "markdown_inline",
                     "svelte",
+                    "clojure",
                 },
                 auto_install = true,
                 highlight = {
