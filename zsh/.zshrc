@@ -12,10 +12,13 @@ setopt SHARE_HISTORY
 setopt HIST_IGNORE_DUPS 
 
 # Completion
-source "$ZDOTDIR/completion.zsh"
+source "$ZDOTDIR/completions/completion.zsh"
+# Add deno completions to search path
+if [[ ":$FPATH:" != *":/home/hkuittinen/.config/zsh/completions:"* ]]; then export FPATH="/home/hkuittinen/.config/zsh/completions:$FPATH"; fi
 
 # Aliases
 alias {vi,vim}="nvim"
 alias lgit="lazygit"
 alias image="imv"
 alias video="mpv"
+. "/home/hkuittinen/.deno/env"
