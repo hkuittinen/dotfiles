@@ -18,10 +18,13 @@ local servers = {
     },
     clojure_lsp = {},
     html = {},
-    ts_ls = {},
     eslint = {},
     svelte = {},
     marksman = {},
+    ts_ls = {
+        single_file_support = false,
+    },
+    denols = { },
 }
 
 local tools = {
@@ -64,25 +67,23 @@ return {
             { "folke/neodev.nvim", opts = {} },
         },
         config = function()
-            local _border = "single"
-            -- Add the border on hover and on signature help popup window
-            local handlers = {
-                ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = _border }),
-                ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = _border }),
-            }
             -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
             local capabilities = vim.lsp.protocol.make_client_capabilities()
-            capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
 
             require("mason-lspconfig").setup({
                 handlers = {
                     function(server_name)
-                        require("lspconfig")[server_name].setup({
-                            capabilities = capabilities,
-                            settings = servers[server_name],
-                            filetypes = (servers[server_name] or {}).filetypes,
-                            handlers = handlers,
-                        })
+                        local lspconfig = require("lspconfig")
+                        local server = servers[server_name] or {}
+                        server.capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
+
+                        if server_name == "ts_ls" then
+                            server.root_dir = lspconfig.util.root_pattern("package.json")
+                        elseif server_name == "denols" then
+                            server.root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc")
+                        end
+
+                        lspconfig[server_name].setup(server)
                     end,
                 },
             })
@@ -93,7 +94,6 @@ return {
                 float = {
                     source = true,
                     width = 80,
-                    border = _border,
                 },
             })
             vim.keymap.set("n", "<space>d", vim.diagnostic.open_float)
@@ -154,7 +154,7 @@ return {
                         ["end"] = { args.line2, end_line:len() },
                     }
                 end
-                require("conform").format({ async = true, lsp_format = "never", range = range })
+                require("conform").format({ async = true, lsp_format = "fallback", range = range })
             end, { range = true })
             vim.keymap.set("n", "<leader>F", "<cmd>Format<CR>")
         end,
