@@ -1,0 +1,116 @@
+bar:
+  location: top
+  height: 28
+  spacing: 16
+  right-margin: 8
+  background: 000000ff
+
+  border:
+    bottom-width: 2
+    color: ff8c00ff
+
+  font: JetBrainsMono NFM:pixelsize=14:weight=bold
+  foreground: ff8c00ff
+
+  left:
+    - i3:
+        content:
+          "":
+            map:
+              default:
+                string:
+                  text: "{name}"
+                  margin: 8
+              conditions:
+                state == focused:
+                  string:
+                    text: "{name}"
+                    margin: 8
+                    foreground: 000000ff
+                    deco:
+                      background: { color: ff8c00ff }
+        sort: native
+
+    # TODO: Test.
+    # - removables:
+    #     content:
+    #       map:
+    #         conditions:
+    #           ~mounted:
+    #             string:
+    #               on-click: udisksctl mount -b {device}
+    #               text: "{label}"
+    #           mounted:
+    #             string:
+    #               on-click: udisksctl unmount -b {device}
+    #               text: "{label}"
+    #               deco: { underline: { size: 2, color: ffffffff } }
+
+  right:
+    - sway-xkb:
+        identifiers: [1:1:AT_Translated_Set_2_keyboard]
+        content:
+          - string: { text: "{layout}" }
+
+    - backlight:
+        name: intel_backlight
+        content:
+          string: { text: "Brightness:{percent}%" }
+
+    - pipewire:
+        content:
+          list:
+            items:
+              - map:
+                  conditions:
+                    type == "sink":
+                      map:
+                        conditions:
+                          muted:
+                            string:
+                              text: "Volume:{cubic_volume}% [MUTED]"
+                              foreground: ff0000ff
+                          ~muted:
+                            string:
+                              text: "Volume:{cubic_volume}%"
+
+    - network:
+        content:
+          map:
+            conditions:
+              state == up:
+                map:
+                  default:
+                    - string: { text: "Network:{ssid}" }
+                  conditions:
+                    ipv4 == "":
+                      - string: { text: "NO_IP" }
+
+    - cpu:
+        poll-interval: 5000
+        content:
+          map:
+            conditions:
+              id < 0:
+                - string: { text: "CPU:{cpu}%" }
+
+    - mem:
+        poll-interval: 5000
+        content:
+          string: { text: "RAM:{used:gb}GB" }
+
+    - battery:
+        name: BAT0
+        content:
+          map:
+            conditions:
+              state == "charging":
+                string: { text: ":{capacity}%" }
+              state == "discharging":
+                string: { text: ":{capacity}%" }
+
+    - clock:
+        time-format: "%H:%M"
+        date-format: "%d.%m.%Y"
+        content:
+          string: { text: "{date} {time}" }

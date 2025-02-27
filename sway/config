@@ -9,19 +9,21 @@ set $right l
 # Terminal emulator
 set $term foot
 # Application launcher
-for_window [app_id="^launcher$"] floating enable, sticky enable, resize set 30 ppt 60 ppt, border pixel 2
-set $menu exec $term -a launcher -e /home/hkuittinen/.config/sway/add-ons/sway-launcher-desktop/sway-launcher-desktop.sh 
+# for_window [app_id="^launcher$"] floating enable, sticky enable, resize set 30 ppt 60 ppt, border pixel 2
+# set $menu exec $term -a launcher -e /home/hkuittinen/.config/sway/add-ons/sway-launcher-desktop/sway-launcher-desktop.sh 
 
 ### Style
 default_border pixel 1
 # set $border_color #666666
-set $border_color #4c7899
+# set $border_color #4c7899
 # Property: border background text indicator child_border
-client.focused $border_color #000000 $border_color $border_color $border_color 
-gaps inner 12
-# Center single window:
-# gaps horizontal 320
-# smart_gaps inverse_outer
+# client.focused $border_color #000000 $border_color $border_color $border_color 
+gaps inner 8
+
+# Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
+# output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
+output * bg #333333 solid_color
+# output * bg #000000 solid_color
 
 ### Output configuration
 # Clamshell Mode
@@ -29,18 +31,11 @@ gaps inner 12
 set $laptop eDP-1
 bindswitch --reload --locked lid:on output $laptop disable
 bindswitch --reload --locked lid:off output $laptop enable
-# Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-# output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
-# output * bg #333333 solid_color
-output * bg #000000 solid_color
 
 ### Idle configuration
-# This will lock your screen after 300 seconds of inactivity, then turn off
-# your displays after another 300 seconds, and turn your screens back on when
-# resumed. It will also lock your screen before your computer goes to sleep.
 exec swayidle -w \
          timeout 300 'swaylock' \
-         timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
+         timeout 600 'systemctl suspend' \
          before-sleep 'swaylock'
 
 ### Input configuration
@@ -48,9 +43,13 @@ exec swayidle -w \
 #
 # Laptop touchpad
 input "1739:0:Synaptics_TM3053-004" {
-    tap enabled
     natural_scroll enabled
 }
+
+input "1267:12680:ELAN0673:00_04F3:3188_Touchpad" {
+    natural_scroll enabled
+}
+
 
 input "type:keyboard" {
     xkb_layout us,fi
@@ -60,19 +59,14 @@ input "type:keyboard" {
     xkb_options caps:escape,ctrl:swap_lalt_lctl,grp:shifts_toggle
 }
 
-input "76:613:Apple_Inc._Magic_Trackpad_2" {
-    pointer_accel 1.0
-    # accel_profile "flat"
-}
-
 # Apple Magic Mouse
 input "76:617:Hiiri" {
     natural_scroll enabled
 }
 
 ### Key bindings
-# Lock 
-bindsym $mod+Escape exec swaylock
+# Lock and suspend (swayidle before-sleep)
+bindsym $mod+Escape exec 'systemctl suspend'
 # Open a terminal
 bindsym $mod+Return exec $term
 # Open a web browser
@@ -145,13 +139,14 @@ bindsym $mod+Shift+0 move container to workspace number 10
 
 ## Layout stuff:
 # Change split direction vertical/horizontal.
-bindsym $mod+v splith
-bindsym $mod+b splitv
+# bindsym $mod+v splith
+# bindsym $mod+b splitv
+bindsym $mod+s split toggle
 
 # Switch the current container between different layout styles
 # bindsym $mod+s layout stacking
 # bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
+# bindsym $mod+e layout toggle split
 # Make the current focus fullscreen
 bindsym $mod+f fullscreen
 # Toggle the current focus between tiling and floating mode
@@ -191,29 +186,33 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 ### Status Bar:
-bar {
-    swaybar_command waybar
-    position top
-    mode dock
-}
-# Toggle bar mode hide/show
-bindsym $mod+m exec '[ "$(swaymsg -t get_bar_config bar-0 | jq -r ".mode")" = "dock" ] && swaymsg bar mode invisible || swaymsg bar mode dock'
+# waybar:
+# bar {
+#     swaybar_command waybar
+#     position top
+#     mode dock
+# }
+# bindsym $mod+m exec '[ "$(swaymsg -t get_bar_config bar-0 | jq -r ".mode")" = "dock" ] && swaymsg bar mode invisible || swaymsg bar mode dock'
+
+# yambar
+exec_always sh -c "pkill yambar; yambar &"
+bindsym $mod+m exec sh -c 'pgrep -x yambar > /dev/null && pkill -x yambar || yambar &'
 
 ### Function keys
 # Volume
 bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
 bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
 bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
-bindsym $mod+XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
-bindsym $mod+XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
-bindsym $mod+XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
+# bindsym $mod+XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+# bindsym $mod+XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
+# bindsym $mod+XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
 # Brightness
 bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
 bindsym XF86MonBrightnessUp exec brightnessctl set 5%+
-bindsym $mod+XF86MonBrightnessDown exec brightnessctl set 5%-
-bindsym $mod+XF86MonBrightnessUp exec brightnessctl set 5%+
+# bindsym $mod+XF86MonBrightnessDown exec brightnessctl set 5%-
+# bindsym $mod+XF86MonBrightnessUp exec brightnessctl set 5%+
 
 # Polkit agent
-exec "/usr/lib/polkit-kde-authentication-agent-1"
+# exec "/usr/lib/polkit-kde-authentication-agent-1"
 
 include /etc/sway/config.d/*

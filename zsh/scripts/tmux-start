@@ -15,8 +15,8 @@ selected_name=$(basename "$selected" | tr . _)
 tmux_running=$(pgrep tmux)
 
 if [[ -z $tmux_running ]]; then
-    tmux new-session -ds dotfiles -c ~/Projects/dotfiles
-    tmux new-session -ds notes -c ~/Notes
+    tmux new-session -ds dotfiles -c ~/projects/dotfiles
+    tmux new-session -ds notes -c ~/notes
     tmux new-session -ds terminal -c ~
 fi
 

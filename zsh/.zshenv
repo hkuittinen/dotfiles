@@ -10,8 +10,8 @@ export VISUAL="nvim"
 
 export ELECTRON_OZONE_PLATFORM_HINT="wayland"
 
-path+=("$HOME/Projects/dotfiles/zsh/scripts")
-path+=("$HOME/Projects/dotfiles/babashka/scripts")
-path+=("$HOME/.local/share/fnm") # Node version manager
-export PATH
+# Node version manager
+eval "$(fnm env --shell zsh)"
 
+path+=("$HOME/projects/dotfiles/zsh/scripts")
+# . "/home/hkuittinen/.deno/env"

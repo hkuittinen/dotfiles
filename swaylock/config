@@ -1,6 +1,6 @@
 daemonize
 color=000000
-font=monospace
+font=JetBrainsMono NFM
 font-size=18
 indicator-idle-visible
 indicator-radius=64

@@ -24,7 +24,7 @@ local servers = {
     ts_ls = {
         single_file_support = false,
     },
-    denols = { },
+    denols = {},
 }
 
 local tools = {
@@ -136,12 +136,13 @@ return {
                 -- },
                 formatters_by_ft = {
                     lua = { "stylua" },
-                    -- javascript = { "prettierd" },
-                    -- javascriptreact = { "prettierd" },
-                    -- typescript = { "prettierd" },
-                    -- typescriptreact = { "prettierd" },
-                    -- css = { "prettierd" },
-                    -- html = { "prettierd" },
+                    javascript = { "prettierd" },
+                    javascriptreact = { "prettierd" },
+                    typescript = { "prettierd" },
+                    typescriptreact = { "prettierd" },
+                    css = { "prettierd" },
+                    html = { "prettierd" },
+                    yaml = { "prettierd" },
                     clojure = { "cljfmt" },
                 },
             })

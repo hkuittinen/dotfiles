@@ -2,7 +2,7 @@
 @define-color primary #ffa500;
 
 * {
-  font-family: monospace;
+  font-family: "JetBrainsMono NFM";
 }
 
 window#waybar {
