@@ -1,0 +1,30 @@
+#!/usr/bin/env zsh
+
+cat << EOF
+# List adapters:
+iwctl adapter list
+
+# If the adapter is turned off, turn it on:
+iwctl adapter <adapter_name> set-property Powered on
+
+# List all Wi-Fi devices:
+iwctl device list
+
+# If the device is turned off, turn it on:
+iwctl device <device_name> set-property Powered on
+
+# Scan networks:
+iwctl station <device_name> scan
+
+# List available networks:
+iwctl station <device_name> get-networks
+
+# Connect:
+iwctl station <device_name> connect SSID
+
+# List known networks:
+iwctl known-networks list
+
+# Forget a network:
+iwctl known-networks SSID forget
+EOF
