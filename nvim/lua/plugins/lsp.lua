@@ -21,8 +21,18 @@ local servers = {
     eslint = {},
     svelte = {},
     marksman = {},
+    volar = {}, -- Vue 3
     ts_ls = {
-        single_file_support = false,
+        filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
+        init_options = {
+            plugins = {
+                {
+                    name = "@vue/typescript-plugin",
+                    location = vim.fn.stdpath("data") .. "/mason/packages/vue-language-server/node_modules/@vue/language-server",
+                    languages = { "vue" },
+                },
+            },
+        },
     },
     denols = {},
 }
@@ -137,6 +147,7 @@ return {
                 formatters_by_ft = {
                     lua = { "stylua" },
                     javascript = { "prettierd" },
+                    json = { "prettierd" },
                     javascriptreact = { "prettierd" },
                     typescript = { "prettierd" },
                     typescriptreact = { "prettierd" },

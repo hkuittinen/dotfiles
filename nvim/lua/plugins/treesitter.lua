@@ -24,6 +24,7 @@ return {
                     "markdown_inline",
                     "svelte",
                     "clojure",
+                    "vue",
                 },
                 auto_install = true,
                 highlight = {
