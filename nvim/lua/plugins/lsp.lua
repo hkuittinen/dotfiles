@@ -151,6 +151,7 @@ return {
                     javascriptreact = { "prettierd" },
                     typescript = { "prettierd" },
                     typescriptreact = { "prettierd" },
+                    vue = { "prettierd" },
                     css = { "prettierd" },
                     html = { "prettierd" },
                     yaml = { "prettierd" },
