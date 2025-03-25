@@ -73,7 +73,7 @@ bindsym $mod+Return exec $term
 bindsym $mod+n exec firefox
 
 # Take screenshots
-set $screenshots_file "$HOME/Pictures/screenshots/$(date +"%Y-%m-%dT%H:%M:%S").png"
+set $screenshots_file "$HOME/images/screenshots/$(date +"%Y-%m-%dT%H:%M:%S").png"
 bindsym Print+s exec grimshot --notify save screen $screenshots_file
 bindsym Print+a exec grimshot --notify save area $screenshots_file
 # Record screen
