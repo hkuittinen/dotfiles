@@ -31,26 +31,25 @@ bar:
                       background: { color: ff8c00ff }
         sort: native
 
-    # TODO: Test.
-    # - removables:
-    #     content:
-    #       map:
-    #         conditions:
-    #           ~mounted:
-    #             string:
-    #               on-click: udisksctl mount -b {device}
-    #               text: "{label}"
-    #           mounted:
-    #             string:
-    #               on-click: udisksctl unmount -b {device}
-    #               text: "{label}"
-    #               deco: { underline: { size: 2, color: ffffffff } }
+    - removables:
+        content:
+          map:
+            conditions:
+              ~mounted:
+                string:
+                  on-click: udisksctl mount -b {device}
+                  text: "{label}"
+              mounted:
+                string:
+                  on-click: udisksctl unmount -b {device}
+                  text: "{label}"
+                  deco: { underline: { size: 4, color: 006400ff } }
 
   right:
     - script:
         path: ~/.config/zsh/scripts/record-screen-active.zsh
         content:
-          - string: {text: "{status}", foreground: ff0000ff}
+          - string: { text: "{status}", foreground: ff0000ff }
     - sway-xkb:
         identifiers: [1:1:AT_Translated_Set_2_keyboard]
         content:
