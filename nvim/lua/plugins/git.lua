@@ -1,11 +1,6 @@
 return {
     -- Git wrapper
-    {
-        "tpope/vim-fugitive",
-        config = function()
-            vim.keymap.set("n", "<leader>G", "<cmd>Git<CR>")
-        end,
-    },
+    { "tpope/vim-fugitive" },
     -- Git related decorations to the gutter
     {
         "lewis6991/gitsigns.nvim",
