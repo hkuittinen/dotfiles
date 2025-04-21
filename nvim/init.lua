@@ -59,7 +59,7 @@ require("lazy").setup({
     require("plugins.comment"),
 
     -- Autocompletion
-    require("plugins.nvim-cmp"),
+    require("plugins.autocompletion"),
 
     -- LSP related configs
     require("plugins.lsp"),
