@@ -2,6 +2,10 @@ local wezterm = require("wezterm")
 local act = wezterm.action
 local config = wezterm.config_builder()
 
+if wezterm.target_triple == 'x86_64-pc-windows-msvc' then
+    config.default_prog = { 'pwsh.exe' }
+end
+
 -- config.window_decorations = "RESIZE"
 config.window_padding = {
 	left = 0,
@@ -9,7 +13,7 @@ config.window_padding = {
 	top = 0,
 	bottom = 0,
 }
-config.font_size = 14
+config.font_size = 12
 
 config.use_fancy_tab_bar = false
 config.tab_bar_at_bottom = true
@@ -66,7 +70,7 @@ config.keys = {
 			description = wezterm.format({
 				{ Attribute = { Intensity = "Bold" } },
 				{ Foreground = { Color = "yellow" } },
-				{ Text = "Enter name for new workspace:" },
+				{ Text = "New workspace name:" },
 			}),
 			action = wezterm.action_callback(function(window, pane, line)
 				if line then
@@ -97,7 +101,7 @@ config.keys = {
 			description = wezterm.format({
 				{ Attribute = { Intensity = "Bold" } },
 				{ Foreground = { Color = "yellow" } },
-				{ Text = "New tab name:" },
+				{ Text = "Edit tab name:" },
 			}),
 			action = wezterm.action_callback(function(window, pane, line)
 				if line then
@@ -113,7 +117,7 @@ config.keys = {
 			description = wezterm.format({
 				{ Attribute = { Intensity = "Bold" } },
 				{ Foreground = { Color = "yellow" } },
-				{ Text = "New active workspace name:" },
+				{ Text = "Edit workspace name:" },
 			}),
 			action = wezterm.action_callback(function(window, pane, line)
 				if line then
