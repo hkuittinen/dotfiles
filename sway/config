@@ -7,7 +7,8 @@ set $down j
 set $up k
 set $right l
 # Terminal emulator
-set $term foot
+# set $term foot
+set $term wezterm
 # Application launcher
 # for_window [app_id="^launcher$"] floating enable, sticky enable, resize set 30 ppt 60 ppt, border pixel 2
 # set $menu exec $term -a launcher -e /home/hkuittinen/.config/sway/add-ons/sway-launcher-desktop/sway-launcher-desktop.sh 
