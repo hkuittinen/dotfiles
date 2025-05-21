@@ -14,6 +14,8 @@ config.window_padding = {
 	bottom = 0,
 }
 config.font_size = 12
+-- Disable ligatures.
+config.harfbuzz_features = { 'calt=0', 'clig=0', 'liga=0' }
 
 config.use_fancy_tab_bar = false
 config.tab_bar_at_bottom = true
