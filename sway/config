@@ -33,12 +33,6 @@ set $laptop eDP-1
 bindswitch --reload --locked lid:on output $laptop disable
 bindswitch --reload --locked lid:off output $laptop enable
 
-### Idle configuration
-exec swayidle -w \
-         timeout 300 'swaylock' \
-         timeout 600 'systemctl suspend' \
-         before-sleep 'swaylock'
-
 ### Input configuration
 # Get the names of inputs by running: swaymsg -t get_inputs.
 #
@@ -66,8 +60,8 @@ input "76:617:Hiiri" {
 }
 
 ### Key bindings
-# Lock and suspend (swayidle before-sleep)
-bindsym $mod+Escape exec 'systemctl suspend'
+# Lock and suspend
+bindsym $mod+Escape exec 'swaylock && systemctl suspend'
 # Open a terminal
 bindsym $mod+Return exec $term
 # Open a web browser
