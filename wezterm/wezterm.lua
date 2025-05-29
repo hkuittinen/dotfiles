@@ -1,9 +1,11 @@
 local wezterm = require("wezterm")
+local mux = wezterm.mux
 local act = wezterm.action
 local config = wezterm.config_builder()
+config.enable_wayland = true
 
-if wezterm.target_triple == 'x86_64-pc-windows-msvc' then
-    config.default_prog = { 'pwsh.exe' }
+if wezterm.target_triple == "x86_64-pc-windows-msvc" then
+	config.default_prog = { "pwsh.exe" }
 end
 
 -- config.window_decorations = "RESIZE"
@@ -15,7 +17,7 @@ config.window_padding = {
 }
 config.font_size = 12
 -- Disable ligatures.
-config.harfbuzz_features = { 'calt=0', 'clig=0', 'liga=0' }
+config.harfbuzz_features = { "calt=0", "clig=0", "liga=0" }
 
 config.use_fancy_tab_bar = false
 config.tab_bar_at_bottom = true
@@ -54,6 +56,7 @@ config.colors = {
 }
 
 -- Keybindings --
+config.disable_default_key_bindings = true
 config.leader = { key = "Space", mods = "CTRL", timeout_milliseconds = 2000 }
 config.keys = {
 	{
@@ -192,9 +195,62 @@ config.keys = {
 		action = wezterm.action.ActivateCopyMode,
 	},
 	{
-		key = "s",
+		mods = "LEADER",
+		key = "d",
+		action = wezterm.action.ShowDebugOverlay,
+	},
+	{
+		key = "w",
 		mods = "LEADER",
 		action = act.ShowLauncherArgs({ flags = "WORKSPACES" }),
+	},
+	{
+		mods = "LEADER",
+		key = "s",
+		action = wezterm.action_callback(function(window, pane)
+			local home = wezterm.home_dir
+			local choices = {
+				{
+					id = home .. "/projects/dotfiles", -- cwd
+					label = "dotfiles",
+				},
+				{
+					id = home .. "/notes",
+					label = "notes",
+				},
+				{
+					id = home,
+					label = "terminal",
+				},
+			}
+			window:perform_action(
+				act.InputSelector({
+					action = wezterm.action_callback(function(inner_window, inner_pane, id, label)
+						if not id and not label then
+							wezterm.log_info("cancelled")
+						else
+							wezterm.log_info("id = " .. id)
+							wezterm.log_info("label = " .. label)
+							inner_window:perform_action(
+								act.SwitchToWorkspace({
+									name = label,
+									spawn = {
+										label = label,
+										cwd = id,
+									},
+								}),
+								inner_pane
+							)
+						end
+					end),
+					-- title = "Choose Workspace",
+					choices = choices,
+					-- fuzzy = true,
+					-- fuzzy_description = "Fuzzy find and/or make a workspace",
+				}),
+				pane
+			)
+		end),
 	},
 }
 

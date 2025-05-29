@@ -7,8 +7,7 @@ set $down j
 set $up k
 set $right l
 # Terminal emulator
-# set $term foot
-set $term wezterm
+set $term foot
 # Application launcher
 # for_window [app_id="^launcher$"] floating enable, sticky enable, resize set 30 ppt 60 ppt, border pixel 2
 # set $menu exec $term -a launcher -e /home/hkuittinen/.config/sway/add-ons/sway-launcher-desktop/sway-launcher-desktop.sh 
@@ -64,6 +63,8 @@ input "76:617:Hiiri" {
 bindsym $mod+Escape exec 'swaylock && systemctl suspend'
 # Open a terminal
 bindsym $mod+Return exec $term
+# Open wezterm
+bindsym $mod+Shift+Return exec wezterm start --always-new-process
 # Open a web browser
 bindsym $mod+n exec firefox
 
