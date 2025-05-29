@@ -8,6 +8,31 @@ if wezterm.target_triple == "x86_64-pc-windows-msvc" then
 	config.default_prog = { "pwsh.exe" }
 end
 
+local default_workspaces = {
+	{
+		label = "dotfiles",
+		cwd = wezterm.home_dir .. "/projects/dotfiles",
+	},
+	{
+		label = "notes",
+		cwd = wezterm.home_dir .. "/notes",
+	},
+	{
+		label = "terminal",
+		cwd = wezterm.home_dir,
+	},
+}
+
+wezterm.on("gui-startup", function(cmd)
+	for _, ws in ipairs(default_workspaces) do
+		mux.spawn_window({
+			workspace = ws.label,
+			cwd = ws.cwd,
+		})
+	end
+	mux.set_active_workspace("terminal")
+end)
+
 -- config.window_decorations = "RESIZE"
 config.window_padding = {
 	left = 0,
@@ -56,7 +81,7 @@ config.colors = {
 }
 
 -- Keybindings --
-config.disable_default_key_bindings = true
+-- config.disable_default_key_bindings = true
 config.leader = { key = "Space", mods = "CTRL", timeout_milliseconds = 2000 }
 config.keys = {
 	{
@@ -195,6 +220,11 @@ config.keys = {
 		action = wezterm.action.ActivateCopyMode,
 	},
 	{
+		key = "f",
+		mods = "LEADER",
+		action = wezterm.action.TogglePaneZoomState,
+	},
+	{
 		mods = "LEADER",
 		key = "d",
 		action = wezterm.action.ShowDebugOverlay,
@@ -208,28 +238,34 @@ config.keys = {
 		mods = "LEADER",
 		key = "s",
 		action = wezterm.action_callback(function(window, pane)
-			local home = wezterm.home_dir
-			local choices = {
-				{
-					id = home .. "/projects/dotfiles", -- cwd
-					label = "dotfiles",
-				},
-				{
-					id = home .. "/notes",
-					label = "notes",
-				},
-				{
-					id = home,
-					label = "terminal",
-				},
-			}
+			local choices = {}
+			for key, default_workspace in ipairs(default_workspaces) do
+				choices[key] = {
+					id = default_workspace.cwd,
+					label = default_workspace.label,
+				}
+			end
+
+			local ws_names = wezterm.mux.get_workspace_names()
+			for _, ws_name in ipairs(ws_names) do
+				local exists = false
+				for _, choice in ipairs(choices) do
+					if choice.label == ws_name then
+						exists = true
+						break
+					end
+				end
+				if not exists then
+					table.insert(choices, { label = ws_name })
+				end
+			end
+
 			window:perform_action(
 				act.InputSelector({
 					action = wezterm.action_callback(function(inner_window, inner_pane, id, label)
 						if not id and not label then
 							wezterm.log_info("cancelled")
 						else
-							wezterm.log_info("id = " .. id)
 							wezterm.log_info("label = " .. label)
 							inner_window:perform_action(
 								act.SwitchToWorkspace({
@@ -243,10 +279,8 @@ config.keys = {
 							)
 						end
 					end),
-					-- title = "Choose Workspace",
+					title = "Choose workspace",
 					choices = choices,
-					-- fuzzy = true,
-					-- fuzzy_description = "Fuzzy find and/or make a workspace",
 				}),
 				pane
 			)
