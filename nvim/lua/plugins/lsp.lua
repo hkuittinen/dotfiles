@@ -71,7 +71,7 @@ return {
                         },
                     },
                 },
-                volar = {}, -- Vue 3
+                vue_ls= {}, -- Vue 3
                 ts_ls = {
                     filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
                     init_options = {
