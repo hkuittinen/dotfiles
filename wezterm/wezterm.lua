@@ -289,10 +289,17 @@ config.keys = {
 }
 
 for i = 1, 9 do
+	-- Leader + number to activate a tab.
 	table.insert(config.keys, {
 		key = tostring(i),
 		mods = "LEADER",
 		action = wezterm.action.ActivateTab(i - 1),
+	})
+	-- CTRL+ALT + number to move a tab to that position.
+	table.insert(config.keys, {
+		key = tostring(i),
+		mods = "CTRL|ALT",
+		action = wezterm.action.MoveTab(i - 1),
 	})
 end
 
