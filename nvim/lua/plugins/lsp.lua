@@ -11,22 +11,41 @@ return {
             },
         },
     },
+    -- Dotnet
+    {
+        "seblyng/roslyn.nvim",
+        ft = "cs",
+        ---@module 'roslyn.config'
+        ---@type RoslynNvimConfig
+        opts = {},
+    },
     -- Main LSP Configuration
     {
         "neovim/nvim-lspconfig",
+        event = "VeryLazy",
+        cmd = { "Mason" },
         dependencies = {
-            { "williamboman/mason.nvim", opts = {} },
-            "williamboman/mason-lspconfig.nvim",
+            {
+                "mason-org/mason.nvim",
+                build = ":MasonUpdate",
+                opts = {
+                    registries = {
+                        "github:mason-org/mason-registry",
+                        "github:Crashdummyy/mason-registry", -- Roslyn (C# LSP)
+                    },
+                },
+            },
+            "mason-org/mason-lspconfig.nvim",
             "WhoIsSethDaniel/mason-tool-installer.nvim",
-            -- Status updates for LSP.
-            { "j-hui/fidget.nvim", opts = {} },
-            -- Extra capabilities provided by blink.cmp.
-            "saghen/blink.cmp",
+            { "j-hui/fidget.nvim", opts = {} }, -- Status updates for LSP
         },
         config = function()
             vim.api.nvim_create_autocmd("LspAttach", {
-                group = vim.api.nvim_create_augroup("user-lsp-attach", { clear = true }),
+                group = vim.api.nvim_create_augroup("custom-lsp-attach", { clear = true }),
                 callback = function(event)
+                    ----------------------------------
+                    -- Load key mappings
+                    ----------------------------------
                     local map = function(keys, func, desc, mode)
                         mode = mode or "n"
                         vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
@@ -37,78 +56,135 @@ return {
                     map("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
                     map("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction", { "n", "x" })
                     map("K", vim.lsp.buf.hover, "Hover Documentation")
+
+                    ----------------------------------
+                    -- Add highlights
+                    ----------------------------------
+                    local client = vim.lsp.get_client_by_id(event.data.client_id)
+                    local methods = vim.lsp.protocol.Methods
+                    if client and client:supports_method(methods.textDocument_documentHighlight) then
+                        vim.o.updatetime = 2000
+                        local custom_higlight_name = "custom-lsp/highlight"
+                        local cursor_higlights_group = vim.api.nvim_create_augroup(custom_higlight_name, { clear = false })
+
+                        vim.api.nvim_create_autocmd({ "CursorHold", "InsertLeave" }, {
+                            buffer = event.buf,
+                            group = cursor_higlights_group,
+                            callback = vim.lsp.buf.document_highlight,
+                        })
+
+                        vim.api.nvim_create_autocmd({ "CursorMoved", "InsertEnter", "BufLeave" }, {
+                            buffer = event.buf,
+                            group = cursor_higlights_group,
+                            callback = vim.lsp.buf.clear_references,
+                        })
+
+                        vim.api.nvim_create_autocmd("LspDetach", {
+                            group = vim.api.nvim_create_augroup("custom-lsp/detach", { clear = true }),
+                            callback = function(detach_event)
+                                vim.lsp.buf.clear_references()
+                                vim.api.nvim_clear_autocmds({
+                                    group = custom_higlight_name,
+                                    buffer = detach_event.buf,
+                                })
+                            end,
+                        })
+                    end
+
+                    ----------------------------------
+                    -- inlay_hint
+                    ----------------------------------
+                    if client and client:supports_method(methods.textDocument_inlayHint) then
+                        vim.keymap.set("n", "<leader>uh", function()
+                            vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf }))
+                        end, { desc = "Toggle inlay hints", buffer = event.buf })
+                    end
                 end,
             })
 
-            -- Diagnostic Config
-            vim.diagnostic.config({
-                severity_sort = true,
-                virtual_text = false,
-                float = { source = true, width = 80 },
-                underline = { severity = vim.diagnostic.severity.ERROR },
-            })
-            vim.keymap.set("n", "<space>i", vim.diagnostic.open_float)
+            ----------------------------------
+            -- Server configuration
+            ----------------------------------
+            -- vim.lsp.config("*", {
+            --     capabilities = vim.lsp.protocol.make_client_capabilities(),
+            -- })
 
-            local capabilities = require("blink.cmp").get_lsp_capabilities()
-
-            --  Available keys for servers are:
-            --  - cmd (table): Override the default command used to start the server
-            --  - filetypes (table): Override the default list of associated filetypes for the server
-            --  - capabilities (table): Override fields in capabilities. Can be used to disable certain LSP features.
-            --  - settings (table): Override the default settings passed when initializing the server.
             local servers = {
-                lua_ls = {
-                    -- cmd = { ... },
-                    -- filetypes = { ... },
-                    -- capabilities = {},
-                    settings = {
-                        Lua = {
-                            completion = {
-                                callSnippet = "Replace",
-                            },
-                            -- Toggle below to ignore Lua_LS's noisy `missing-fields` warnings.
-                            -- diagnostics = { disable = { 'missing-fields' } },
-                        },
-                    },
-                },
-                vue_ls= {}, -- Vue 3
-                ts_ls = {
-                    filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
-                    init_options = {
-                        plugins = {
-                            {
-                                name = "@vue/typescript-plugin",
-                                location = vim.fn.stdpath("data") .. "/mason/packages/vue-language-server/node_modules/@vue/language-server",
-                                languages = { "vue" },
-                            },
-                        },
-                    },
-                },
+                "lua_ls",
+                "vtsls",
+                "vue_ls",
+                "roslyn",
             }
-
             local tools = {
-                "stylua", -- Lua formatter
-                "prettierd", -- Javascript formatter
+                "prettierd",
+                "eslint_d",
+                "stylua",
             }
-
-            local ensure_installed = vim.tbl_keys(servers or {})
+            local ensure_installed = {}
+            vim.list_extend(ensure_installed, servers)
             vim.list_extend(ensure_installed, tools)
-            require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
             require("mason-lspconfig").setup({
-                ensure_installed = {}, -- Explicitly set to an empty table (populated via mason-tool-installer)
-                automatic_installation = false,
-                handlers = {
-                    function(server_name)
-                        local server = servers[server_name] or {}
-                        server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
-                        require("lspconfig")[server_name].setup(server)
-                    end,
-                },
+                automatic_enable = true,
+                ensure_installed = {},
             })
+
+            require("mason-tool-installer").setup({
+                ensure_installed = ensure_installed,
+            })
+
+            vim.lsp.config("vtsls", {
+                filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
+                settings = {
+                    vtsls = { tsserver = { globalPlugins = {} } },
+                    typescript = {
+                        inlayHints = {
+                            parameterNames = { enabled = "literals" },
+                            parameterTypes = { enabled = true },
+                            variableTypes = { enabled = true },
+                            propertyDeclarationTypes = { enabled = true },
+                            functionLikeReturnTypes = { enabled = true },
+                            enumMemberValues = { enabled = true },
+                        },
+                    },
+                },
+                before_init = function(_, config)
+                    table.insert(config.settings.vtsls.tsserver.globalPlugins, {
+                        name = "@vue/typescript-plugin",
+                        location = vim.fn.expand("$MASON/packages/vue-language-server/node_modules/@vue/language-server"),
+                        languages = { "vue" },
+                        configNamespace = "typescript",
+                        enableForWorkspaceTypeScriptVersions = true,
+                    })
+                end,
+                on_attach = function(client)
+                    client.server_capabilities.documentFormattingProvider = false
+                    client.server_capabilities.documentRangeFormattingProvider = false
+                end,
+            })
+
+            ----------------------------------
+            -- Diagnostics
+            ----------------------------------
+            vim.diagnostic.config({
+                -- underline = true,
+                virtual_text = false,
+                update_in_insert = false,
+                document_highlight = {
+                    enabled = true,
+                },
+                codelens = {
+                    enabled = false,
+                },
+                severity_sort = true,
+                float = { source = true, width = 80 },
+            })
+            vim.keymap.set("n", "<leader>i", vim.diagnostic.open_float)
         end,
     },
+    ----------------------------------
     -- Formatters
+    ----------------------------------
     {
         "stevearc/conform.nvim",
         event = { "BufWritePre" },
