@@ -71,6 +71,6 @@ require("lazy").setup({
     require("plugins.no-neck-pain"),
 
     -- Markdown
-    require("plugins.markdown-preview"),
-    require("plugins.markview"),
+    -- require("plugins.markdown-preview"),
+    -- require("plugins.markview"),
 })
