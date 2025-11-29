@@ -1,3 +1,5 @@
+include /etc/sway/config.d/*
+
 ### Variables
 # Windws/logo key. 
 set $mod Mod4
@@ -28,9 +30,9 @@ output * bg #333333 solid_color
 ### Output configuration
 # Clamshell Mode
 # Get laptop output id: swaymsg -t get_outputs
-set $laptop eDP-1
-bindswitch --reload --locked lid:on output $laptop disable
-bindswitch --reload --locked lid:off output $laptop enable
+# set $laptop eDP-1
+# bindswitch --reload --locked lid:on output $laptop disable
+# bindswitch --reload --locked lid:off output $laptop enable
 
 ### Input configuration
 # Get the names of inputs by running: swaymsg -t get_inputs.
@@ -44,13 +46,14 @@ input "1267:12680:ELAN0673:00_04F3:3188_Touchpad" {
     natural_scroll enabled
 }
 
-
 input "type:keyboard" {
     xkb_layout us,fi
     # CapsLock to Esc
-    # Swap left Alt and Ctrl keys 
+    # Swap left Alt and Ctrl keys
     # Left+right shifts to toggle between us/fi keyboard layout
-    xkb_options caps:escape,ctrl:swap_lalt_lctl,grp:shifts_toggle
+    xkb_options caps:escape
+    # xkb_options ctrl:swap_lalt_lctl
+    xkb_options grp:shifts_toggle
 }
 
 # Apple Magic Mouse
@@ -209,6 +212,9 @@ bindsym XF86MonBrightnessUp exec brightnessctl set 5%+
 # bindsym $mod+XF86MonBrightnessUp exec brightnessctl set 5%+
 
 # Polkit agent
-# exec "/usr/lib/polkit-kde-authentication-agent-1"
+exec "/usr/lib/polkit-kde-authentication-agent-1"
 
-include /etc/sway/config.d/*
+# Manage Sway-specific daemons with system
+exec "systemctl --user import-environment {,WAYLAND_}DISPLAY SWAYSOCK; systemctl --user start sway-session.target"
+exec swaymsg -t subscribe '["shutdown"]' && systemctl --user stop sway-session.target
+
