@@ -51,9 +51,7 @@ input "type:keyboard" {
     # CapsLock to Esc
     # Swap left Alt and Ctrl keys
     # Left+right shifts to toggle between us/fi keyboard layout
-    xkb_options caps:escape
-    # xkb_options ctrl:swap_lalt_lctl
-    xkb_options grp:shifts_toggle
+    xkb_options caps:escape,ctrl:swap_lalt_lctl,grp:shifts_toggle
 }
 
 # Apple Magic Mouse

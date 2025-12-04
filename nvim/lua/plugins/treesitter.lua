@@ -25,6 +25,7 @@ return {
                     "svelte",
                     "clojure",
                     "vue",
+                    "go",
                 },
                 auto_install = true,
                 highlight = {

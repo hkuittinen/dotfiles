@@ -113,24 +113,22 @@ return {
                 "lua_ls",
                 "vtsls",
                 "vue_ls",
-                "roslyn",
+                -- "roslyn",
+                "gopls",
             }
             local tools = {
                 "prettierd",
                 "eslint_d",
                 "stylua",
             }
-            local ensure_installed = {}
-            vim.list_extend(ensure_installed, servers)
-            vim.list_extend(ensure_installed, tools)
 
             require("mason-lspconfig").setup({
                 automatic_enable = true,
-                ensure_installed = {},
+                ensure_installed = servers,
             })
 
             require("mason-tool-installer").setup({
-                ensure_installed = ensure_installed,
+                ensure_installed = tools,
             })
 
             vim.lsp.config("vtsls", {
