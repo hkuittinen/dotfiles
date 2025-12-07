@@ -4,15 +4,18 @@ require("autocommands")
 
 -- Install plugin manager
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
-    vim.fn.system({
-        "git",
-        "clone",
-        "--filter=blob:none",
-        "https://github.com/folke/lazy.nvim.git",
-        "--branch=stable", -- latest stable release
-        lazypath,
-    })
+if not (vim.uv or vim.loop).fs_stat(lazypath) then
+    local lazyrepo = "https://github.com/folke/lazy.nvim.git"
+    local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
+    if vim.v.shell_error ~= 0 then
+        vim.api.nvim_echo({
+            { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
+            { out, "WarningMsg" },
+            { "\nPress any key to exit..." },
+        }, true, {})
+        vim.fn.getchar()
+        os.exit(1)
+    end
 end
 vim.opt.rtp:prepend(lazypath)
 
@@ -21,56 +24,33 @@ require("lazy").setup({
     -- Theme and statusline
     require("plugins.active-theme"),
 
-    -- Add a layer of ✨bling✨ and configuration to netrw
-    -- NOTE: Using oil.vim currently.
-    -- require("plugins.netrw"),
-
-    -- Split windows and the project drawer go together like oil and vinegar
-    require("plugins.oil"),
-
-    -- Highlight, edit, and navigate code
-    require("plugins.treesitter"),
-
-    -- Fuzzy Finder (files, lsp, etc)
-    require("plugins.telescope"),
-
     -- Indentation guides
     require("plugins.indent-blankline"),
 
     -- Detect tabstop and shiftwidth automatically
-    "tpope/vim-sleuth",
-
-    -- Git related plugins
-    require("plugins.git"),
+    require("plugins.guess-indent"),
 
     -- Close ([{ etc. automatically.
     require("plugins.nvim-autopairs"),
 
-    -- Surround with ([{ etc. easily.
-    require("plugins.nvim-surround"),
+    -- Center the currently focused buffer
+    require("plugins.no-neck-pain"),
 
-    -- Rainbow parentheses
-    -- "HiPhish/rainbow-delimiters.nvim",
-
-    -- Toggle comments
-    require("plugins.comment"),
-
-    -- Autocompletion
-    require("plugins.autocompletion"),
-
-    -- LSP related configs
-    require("plugins.lsp"),
-
-    -- Clojure
-    require("plugins.clojure"),
+    -- Explore files
+    require("plugins.oil"),
 
     -- Switch files quickly
     require("plugins.harpoon"),
 
-    -- Center the currently focused buffer
-    require("plugins.no-neck-pain"),
+    -- Search
+    require("plugins.fzf-lua"),
 
-    -- Markdown
-    -- require("plugins.markdown-preview"),
-    -- require("plugins.markview"),
+    -- Highlight, edit, and navigate code
+    require("plugins.treesitter"),
+
+    -- LSP related configs
+    require("plugins.lsp"),
+
+    -- Git related configs
+    require("plugins.git"),
 })

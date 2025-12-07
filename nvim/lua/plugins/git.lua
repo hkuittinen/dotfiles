@@ -14,24 +14,18 @@ return {
                     changedelete = { text = "~" },
                     untracked = { text = "┆" },
                 },
-                attach_to_untracked = true,
-                on_attach = function(bufnr)
-                    local gs = package.loaded.gitsigns
-
-                    local function map(mode, l, r, opts)
-                        opts = opts or {}
-                        opts.buffer = bufnr
-                        vim.keymap.set(mode, l, r, opts)
-                    end
-
-                    -- Actions
-                    map("n", "<leader>dh", gs.preview_hunk)
-                    map("n", "<leader>dt", gs.diffthis)
-                end,
+                signs_staged = {
+                    add = { text = "+" },
+                    change = { text = "~" },
+                    delete = { text = "_" },
+                    topdelete = { text = "‾" },
+                    changedelete = { text = "~" },
+                    untracked = { text = "┆" },
+                },
             })
         end,
     },
-    -- Git diff view
+    -- Git diff
     {
         "sindrets/diffview.nvim",
         config = function()

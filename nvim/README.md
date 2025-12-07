@@ -3,7 +3,7 @@
 ## Linux
 
 ```
-ln -s ~/Projects/dotfiles/nvim ~/.config/nvim
+ln -s ~/projects/dotfiles/nvim ~/.config/nvim
 ```
 
 ## Windows PowerShell

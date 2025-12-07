@@ -10,14 +10,13 @@ return {
                 },
                 -- scratchPad = {
                 -- 	enabled = true,
-                -- 	location = "~/Documents/",
+                -- 	location = "~/scratchpad/",
                 -- },
                 -- bo = {
                 -- 	filetype = "md",
                 -- },
             },
         })
-
         vim.keymap.set("n", "<leader><CR>", "<cmd>NoNeckPain<cr>", { desc = "Center buffer." })
     end,
 }

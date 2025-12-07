@@ -6,6 +6,7 @@ vim.g.netrw_banner = 0
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.scrolloff = 10
+vim.opt.winborder = 'rounded'
 
 vim.opt.splitbelow = true
 vim.opt.splitright = true

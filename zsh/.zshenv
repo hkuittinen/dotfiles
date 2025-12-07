@@ -10,8 +10,5 @@ export VISUAL="nvim"
 
 export ELECTRON_OZONE_PLATFORM_HINT="wayland"
 
-# Node version manager
-eval "$(fnm env --shell zsh)"
-
 path+=("$HOME/projects/dotfiles/zsh/scripts")
-# . "/home/hkuittinen/.deno/env"
+. "$HOME/.cargo/env"
