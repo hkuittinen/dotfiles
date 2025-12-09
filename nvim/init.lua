@@ -39,6 +39,9 @@ require("lazy").setup({
     -- Explore files
     require("plugins.oil"),
 
+    -- Quickfix
+    require("plugins.quicker"),
+
     -- Switch files quickly
     require("plugins.harpoon"),
 

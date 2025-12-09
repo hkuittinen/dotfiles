@@ -34,6 +34,9 @@ wezterm.on("gui-startup", function(cmd)
 end)
 
 -- config.window_decorations = "RESIZE"
+wezterm.on('format-window-title', function()
+    return ""
+end)
 config.window_padding = {
 	left = 0,
 	right = 0,

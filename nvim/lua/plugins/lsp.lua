@@ -31,6 +31,7 @@ return {
                     end
                     map("K", vim.lsp.buf.hover, "Hover Documentation")
                     map("<leader>i", vim.diagnostic.open_float, "Open Diagnostic Float")
+                    map("<leader>fr", vim.lsp.buf.references, "Find references")
                     map("gd", vim.lsp.buf.definition, "Goto Definition")
                     map("gD", vim.lsp.buf.declaration, "Goto Declaration")
                     map("gs", vim.lsp.buf.signature_help, "Signature Documentation")
