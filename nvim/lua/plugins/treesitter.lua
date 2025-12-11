@@ -24,6 +24,7 @@ return {
             "sql",
             "python",
             "c",
+            "gitignore",
         })
         vim.api.nvim_create_autocmd("FileType", {
             callback = function(args)

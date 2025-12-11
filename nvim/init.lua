@@ -30,8 +30,11 @@ require("lazy").setup({
     -- Detect tabstop and shiftwidth automatically
     require("plugins.guess-indent"),
 
-    -- Close ([{ etc. automatically.
+    -- Close ([{ etc. automatically
     require("plugins.nvim-autopairs"),
+
+    -- Close html tags automatically
+    require("plugins.nvim-ts-autotags"),
 
     -- Center the currently focused buffer
     require("plugins.no-neck-pain"),
