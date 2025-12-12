@@ -34,8 +34,8 @@ wezterm.on("gui-startup", function(cmd)
 end)
 
 -- config.window_decorations = "RESIZE"
-wezterm.on('format-window-title', function()
-    return ""
+wezterm.on("format-window-title", function()
+	return ""
 end)
 config.window_padding = {
 	left = 0,
@@ -43,6 +43,7 @@ config.window_padding = {
 	top = 0,
 	bottom = 0,
 }
+-- config.font = wezterm.font("JetBrains Mono", { weight = "Bold" })
 config.font_size = 12
 -- Disable ligatures.
 config.harfbuzz_features = { "calt=0", "clig=0", "liga=0" }
@@ -63,7 +64,7 @@ wezterm.on("update-right-status", function(window, _)
 		{ Background = { Color = "black" } },
 		{ Foreground = { Color = "darkgreen" } },
 		{ Attribute = { Intensity = "Bold" } },
-		{ Text = wezterm.strftime(" %a %d.%m.%Y, %H:%M ") },
+		{ Text = wezterm.strftime(" %a %d.%m.%Y %H:%M ") },
 	}))
 end)
 

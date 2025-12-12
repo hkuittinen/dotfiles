@@ -183,17 +183,18 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 ### Status Bar:
-# waybar:
-# bar {
-#     swaybar_command waybar
-#     position top
-#     mode dock
-# }
+bar {
+    swaybar_command waybar
+    position top
+    mode dock 
+}
+bindsym $mod+m exec killall -SIGUSR1 waybar
+# bindsym $mod+m exec "pgrep waybar && pkill waybar || waybar"
 # bindsym $mod+m exec '[ "$(swaymsg -t get_bar_config bar-0 | jq -r ".mode")" = "dock" ] && swaymsg bar mode invisible || swaymsg bar mode dock'
-
-# yambar
-exec_always sh -c "pkill yambar; yambar &"
-bindsym $mod+m exec sh -c 'pgrep -x yambar > /dev/null && pkill -x yambar || yambar &'
+#
+# # yambar
+# exec_always sh -c "pkill yambar; yambar &"
+# bindsym $mod+m exec sh -c 'pgrep -x yambar > /dev/null && pkill -x yambar || yambar &'
 
 ### Function keys
 # Volume
