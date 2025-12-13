@@ -4,6 +4,7 @@
     "layer": "top",
     "modules-left": [
         "sway/workspaces",
+        "custom/usb"
     ],
     "modules-right": [
         "custom/wf-recorder",
@@ -17,6 +18,11 @@
         "battery",
         "clock",
     ],
+    "custom/usb": {
+        "exec": "mounted-usb.zsh",
+        "interval": 10,
+        "format": "{}",
+    },
     "custom/wf-recorder": {
         "format": "{}",
         "interval": "once",

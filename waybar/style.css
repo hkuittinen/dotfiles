@@ -24,6 +24,7 @@ window#waybar {
   font-weight: bold;
 }
 
+#custom-usb,
 #custom-wf-recorder,
 #clock,
 #language,
@@ -34,7 +35,7 @@ window#waybar {
 #cpu,
 #network,
 #bluetooth {
-  padding: 4px 16px 6px 16px;
+  padding: 4px 12px 6px 12px;
   min-width: 24px;
   color: @primary;
 }
