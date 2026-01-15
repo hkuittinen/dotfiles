@@ -6,7 +6,7 @@ return {
             no_ignore = false, -- respect ".gitignore"  by default
         },
         file_ignore_patterns = {
-            ".git",
+            ".git/",
             "node_modules",
             "dist",
             "build",

@@ -11,4 +11,5 @@ export VISUAL="nvim"
 export ELECTRON_OZONE_PLATFORM_HINT="wayland"
 
 path+=("$HOME/projects/dotfiles/zsh/scripts")
+path+=("$HOME/.local/bin")
 . "$HOME/.cargo/env"
