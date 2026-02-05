@@ -59,4 +59,7 @@ require("lazy").setup({
 
     -- Git related configs
     require("plugins.git"),
+
+    -- Claude Code (vibes)
+    require("plugins.claude"),
 })

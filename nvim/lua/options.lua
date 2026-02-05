@@ -6,7 +6,7 @@ vim.g.netrw_banner = 0
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.scrolloff = 10
-vim.opt.winborder = 'rounded'
+vim.opt.winborder = "rounded"
 
 vim.opt.splitbelow = true
 vim.opt.splitright = true
@@ -42,6 +42,12 @@ vim.opt.completeopt = "menuone,noselect"
 vim.opt.signcolumn = "yes"
 
 vim.opt.foldlevel = 99
+
+vim.o.autoread = true
+vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter" }, {
+    pattern = "*",
+    command = "checktime",
+})
 
 -- vim.opt.updatetime = 250
 -- vim.opt.timeoutlen = 300

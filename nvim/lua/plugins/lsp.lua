@@ -13,6 +13,8 @@ return {
                         -- LSP
                         "lua_ls",
                         "vtsls",
+                        "gopls",
+                        "templ",
                         -- Tools
                         "stylua",
                         "eslint",
@@ -104,6 +106,8 @@ return {
                 css = { "prettierd" },
                 yaml = { "prettierd" },
                 json = { "prettierd" },
+                go = { "goimports", "gofmt" },
+                templ = { "templ" },
             },
         },
     },
