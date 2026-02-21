@@ -10,12 +10,12 @@ end
 
 local default_workspaces = {
 	{
-		label = "dotfiles",
-		cwd = wezterm.home_dir .. "/projects/dotfiles",
-	},
-	{
 		label = "notes",
 		cwd = wezterm.home_dir .. "/notes",
+	},
+	{
+		label = "dotfiles",
+		cwd = wezterm.home_dir .. "/projects/dotfiles",
 	},
 	{
 		label = "terminal",
