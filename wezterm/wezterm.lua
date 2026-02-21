@@ -242,25 +242,20 @@ config.keys = {
 		mods = "LEADER",
 		key = "s",
 		action = wezterm.action_callback(function(window, pane)
+			local current_ws = window:active_workspace()
 			local choices = {}
-			for key, default_workspace in ipairs(default_workspaces) do
-				choices[key] = {
-					id = default_workspace.cwd,
-					label = default_workspace.label,
-				}
+			local seen = {}
+
+			for _, ws in ipairs(default_workspaces) do
+				local label = ws.label == current_ws and ws.label .. " [*]" or ws.label
+				choices[#choices + 1] = { id = ws.cwd, label = label }
+				seen[ws.label] = true
 			end
 
-			local ws_names = wezterm.mux.get_workspace_names()
-			for _, ws_name in ipairs(ws_names) do
-				local exists = false
-				for _, choice in ipairs(choices) do
-					if choice.label == ws_name then
-						exists = true
-						break
-					end
-				end
-				if not exists then
-					table.insert(choices, { label = ws_name })
+			for _, ws_name in ipairs(wezterm.mux.get_workspace_names()) do
+				if not seen[ws_name] then
+					local label = ws_name == current_ws and ws_name .. " [*]" or ws_name
+					choices[#choices + 1] = { label = label }
 				end
 			end
 
@@ -270,15 +265,9 @@ config.keys = {
 						if not id and not label then
 							wezterm.log_info("cancelled")
 						else
-							wezterm.log_info("label = " .. label)
+							local name = label:gsub(" %[%*%]$", "")
 							inner_window:perform_action(
-								act.SwitchToWorkspace({
-									name = label,
-									spawn = {
-										label = label,
-										cwd = id,
-									},
-								}),
+								act.SwitchToWorkspace({ name = name, spawn = { cwd = id } }),
 								inner_pane
 							)
 						end
