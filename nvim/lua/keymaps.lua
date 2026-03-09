@@ -53,3 +53,14 @@ vim.keymap.set("n", "<leader>m", function()
         vim.opt.cmdheight = 1
     end
 end)
+
+-- Yank filepaths
+vim.keymap.set("n", "<leader>yF", ":let @+ = expand('%')<cr>", { desc = "Copy current buffer filepath" })
+vim.keymap.set("n", "<leader>yf", ":let @+ = '@' . expand('%:.')<cr>", { desc = "Copy current buffer filepath for Claude" })
+vim.keymap.set("n", "<leader>yl", ":let @+ = '@' . expand('%:.') . '#L' . line('.')<cr>", { desc = "Copy current buffer filepath with line for Claude" })
+vim.keymap.set(
+    "v",
+    "<leader>yl",
+    ":<C-u>let @+ = '@' . expand('%:.') . '#L' . line(\"'<\") . '-' . line(\"'>\")<cr>",
+    { desc = "Copy current buffer filepath with line range for Claude" }
+)

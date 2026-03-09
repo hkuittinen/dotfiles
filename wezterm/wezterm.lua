@@ -111,6 +111,7 @@ config.keys = {
 					window:perform_action(
 						act.SwitchToWorkspace({
 							name = line,
+							spawn = { cwd = wezterm.home_dir .. "/projects" },
 						}),
 						pane
 					)
@@ -122,6 +123,40 @@ config.keys = {
 		mods = "LEADER",
 		key = "c",
 		action = wezterm.action.SpawnTab("CurrentPaneDomain"),
+	},
+	{
+		mods = "LEADER",
+		key = "w",
+		action = wezterm.action_callback(function(window)
+			local tab_names = { "run", "edit", "terminal" }
+			local mux_win = window:mux_window()
+
+			local wanted = {}
+			for _, name in ipairs(tab_names) do
+				wanted[name] = true
+			end
+
+			local to_close = {}
+			for _, tab in ipairs(mux_win:tabs()) do
+				local title = tab:get_title()
+				if wanted[title] then
+					wanted[title] = nil -- mark as found
+				else
+					table.insert(to_close, tab)
+				end
+			end
+
+			for _, name in ipairs(tab_names) do
+				if wanted[name] then
+					mux_win:spawn_tab({}):set_title(name)
+				end
+			end
+
+			for _, tab in ipairs(to_close) do
+				tab:activate()
+				window:perform_action(act.CloseCurrentTab({ confirm = false }), tab:active_pane())
+			end
+		end),
 	},
 	{
 		mods = "LEADER",
@@ -233,11 +268,11 @@ config.keys = {
 		key = "d",
 		action = wezterm.action.ShowDebugOverlay,
 	},
-	{
-		key = "w",
-		mods = "LEADER",
-		action = act.ShowLauncherArgs({ flags = "WORKSPACES" }),
-	},
+	-- {
+	-- 	key = "w",
+	-- 	mods = "LEADER",
+	-- 	action = act.ShowLauncherArgs({ flags = "WORKSPACES" }),
+	-- },
 	{
 		mods = "LEADER",
 		key = "s",
