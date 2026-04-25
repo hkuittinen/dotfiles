@@ -64,3 +64,11 @@ vim.keymap.set(
     ":<C-u>let @+ = '@' . expand('%:.') . '#L' . line(\"'<\") . '-' . line(\"'>\")<cr>",
     { desc = "Copy current buffer filepath with line range for Claude" }
 )
+
+-- Print current date and time
+vim.keymap.set("n", "<leader>pd", function()
+    local days = { "su", "ma", "ti", "ke", "to", "pe", "la" }
+    local t = os.date("*t")
+    local msg = string.format("%02d.%02d.%d %s, klo %02d:%02d", t.day, t.month, t.year, days[t.wday], t.hour, t.min)
+    vim.api.nvim_put({ msg }, "c", true, true)
+end, { desc = "Print current date and time" })
