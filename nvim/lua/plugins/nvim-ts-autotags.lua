@@ -1,4 +1,1 @@
-return {
-    "windwp/nvim-ts-autotag",
-    opts = {},
-}
+require("nvim-ts-autotag").setup({})

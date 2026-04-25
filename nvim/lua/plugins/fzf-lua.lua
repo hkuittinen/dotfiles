@@ -1,83 +1,32 @@
-return {
-    "ibhagwan/fzf-lua",
-    dependencies = { "nvim-tree/nvim-web-devicons" },
-    opts = {
-        files = {
-            no_ignore = false, -- respect ".gitignore"  by default
-        },
-        file_ignore_patterns = {
-            ".git/",
-            "node_modules",
-            "dist",
-            "build",
-            "target",
-            "package-lock.json",
-            "pnpm-lock.yaml",
-            "yarn.lock",
-        },
-        winopts = {
-            preview = {
-                hidden = false,
-                layout = "vertical",
-            },
+local fzf = require("fzf-lua")
+
+fzf.setup({
+    files = {
+        no_ignore = false, -- respect ".gitignore" by default
+    },
+    file_ignore_patterns = {
+        ".git/",
+        "node_modules",
+        "dist",
+        -- "build",
+        "target",
+        "package-lock.json",
+        "pnpm-lock.yaml",
+        "yarn.lock",
+    },
+    winopts = {
+        preview = {
+            hidden = false,
+            layout = "vertical",
         },
     },
-    keys = {
-        {
-            "<leader>ff",
-            function()
-                require("fzf-lua").files()
-            end,
-            desc = "Find files.",
-        },
-        {
-            "<leader>fg",
-            function()
-                require("fzf-lua").git_status()
-            end,
-            desc = "Find git status files.",
-        },
-        {
-            "<leader><leader>",
-            function()
-                require("fzf-lua").buffers()
-            end,
-            desc = "Open buffers.",
-        },
-        {
-            "<leader>gp",
-            function()
-                require("fzf-lua").grep_project()
-            end,
-            desc = "Grep project.",
-        },
-        {
-            "<leader>gl",
-            function()
-                require("fzf-lua").live_grep()
-            end,
-            desc = "Grep live.",
-        },
-        {
-            "<leader>gw",
-            function()
-                require("fzf-lua").grep_cword()
-            end,
-            desc = "Grep word under cursor.",
-        },
-        {
-            "<leader>gv",
-            function()
-                require("fzf-lua").grep_visual()
-            end,
-            desc = "Grep visual selection",
-        },
-        {
-            "<leader>/",
-            function()
-                require("fzf-lua").grep_curbuf()
-            end,
-            desc = "Grep current buffer.",
-        },
-    },
-}
+})
+
+vim.keymap.set("n", "<leader>ff", fzf.files, { desc = "Find files." })
+vim.keymap.set("n", "<leader>fg", fzf.git_status, { desc = "Find git status files." })
+vim.keymap.set("n", "<leader><leader>", fzf.buffers, { desc = "Open buffers." })
+vim.keymap.set("n", "<leader>gp", fzf.grep_project, { desc = "Grep project." })
+vim.keymap.set("n", "<leader>gl", fzf.live_grep, { desc = "Grep live." })
+vim.keymap.set("n", "<leader>gw", fzf.grep_cword, { desc = "Grep word under cursor." })
+vim.keymap.set("n", "<leader>gv", fzf.grep_visual, { desc = "Grep visual selection" })
+vim.keymap.set("n", "<leader>/", fzf.grep_curbuf, { desc = "Grep current buffer." })
