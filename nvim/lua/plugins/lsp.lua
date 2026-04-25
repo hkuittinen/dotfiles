@@ -15,6 +15,7 @@ return {
                         "vtsls",
                         "gopls",
                         "templ",
+                        'denols',
                         -- Tools
                         "stylua",
                         "eslint",
