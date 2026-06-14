@@ -29,3 +29,5 @@ alias soulseek="nicotine"
 alias wifi="impala"
 alias bluetooth="bluetui"
 alias usb="bashmount"
+
+alias gamecube="dolphin-emu"
