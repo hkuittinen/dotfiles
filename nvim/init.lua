@@ -40,6 +40,8 @@ vim.pack.add({
     "https://github.com/tpope/vim-fugitive",
     "https://github.com/lewis6991/gitsigns.nvim",
     "https://github.com/sindrets/diffview.nvim",
+    -- Tmux
+    "https://github.com/alexghergh/nvim-tmux-navigation",
 })
 vim.api.nvim_create_user_command("PackUpdate", function()
     vim.pack.update()
@@ -68,3 +70,4 @@ require("plugins.fzf-lua")
 require("plugins.treesitter")
 require("plugins.lsp")
 require("plugins.git")
+require("plugins.nvim-tmux-navigation")
