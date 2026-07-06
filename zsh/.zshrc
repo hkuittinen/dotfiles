@@ -13,8 +13,6 @@ setopt HIST_IGNORE_DUPS
 
 # Completion
 source "$ZDOTDIR/completions/completion.zsh"
-# Add deno completions to search path
-if [[ ":$FPATH:" != *":/home/hkuittinen/.config/zsh/completions:"* ]]; then export FPATH="/home/hkuittinen/.config/zsh/completions:$FPATH"; fi
 
 # Node version manager
 eval "$(fnm env --use-on-cd --shell zsh)"
