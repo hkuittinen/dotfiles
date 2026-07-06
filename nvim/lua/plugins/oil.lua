@@ -13,6 +13,11 @@ oil.setup({
     view_options = {
         show_hidden = true,
     },
+    keymaps = {
+        -- Free up <C-h>/<C-l> for vim-tmux-navigator pane movement
+        ["<C-h>"] = false,
+        ["<C-l>"] = false,
+    },
 })
 
 vim.keymap.set("n", "<leader>o", "<cmd>Oil<cr>")
