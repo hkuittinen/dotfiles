@@ -1,6 +1,5 @@
 theme = Wez
-title = " "
-macos-titlebar-proxy-icon = hidden
+window-decoration = none
 
 # Disable ligatures (e.g. |> rendering as one glyph)
 font-feature = -calt
