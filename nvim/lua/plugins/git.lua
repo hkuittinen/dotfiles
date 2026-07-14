@@ -18,6 +18,28 @@ require("gitsigns").setup({
 })
 
 local actions = require("diffview.actions")
+
+local function stage_selected_lines()
+    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>", true, false, true), "nx", false)
+    if vim.api.nvim_buf_get_name(0):match("/%.git/:0:/") then
+        -- In the index buffer: pull the selection from the other side into it.
+        vim.cmd("'<,'>diffget")
+        vim.cmd("silent write")
+    else
+        -- In the working tree (or HEAD) buffer: push the selection into the
+        -- index buffer, then write it.
+        vim.cmd("'<,'>diffput")
+        for _, win in ipairs(vim.api.nvim_tabpage_list_wins(0)) do
+            local buf = vim.api.nvim_win_get_buf(win)
+            if vim.api.nvim_buf_get_name(buf):match("^diffview://") and vim.bo[buf].modified then
+                vim.api.nvim_buf_call(buf, function()
+                    vim.cmd("silent write")
+                end)
+            end
+        end
+    end
+end
+
 require("diffview").setup({
     file_panel = {
         listing_style = "list",
@@ -30,6 +52,7 @@ require("diffview").setup({
         view = {
             { "n", "g?", actions.help({ "view", "diff1" }), { desc = "Open the help panel" } },
             { "n", "f", actions.focus_files, { desc = "Bring focus to the file panel" } },
+            { "x", "s", stage_selected_lines, { desc = "Stage/unstage the selected lines" } },
         },
         file_panel = {
             { "n", "g?", actions.help("file_panel"), { desc = "Open the help panel" } },
@@ -50,3 +73,4 @@ require("diffview").setup({
     },
 })
 vim.keymap.set("n", "<leader>dv", "<cmd>DiffviewOpen<CR>")
+vim.keymap.set("n", "<leader>dm", "<cmd>DiffviewOpen main...HEAD<CR>")
