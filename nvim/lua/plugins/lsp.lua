@@ -7,6 +7,7 @@ require("mason-tool-installer").setup({
         "gopls",
         "templ",
         "denols",
+        "astro",
         -- Tools
         "stylua",
         "eslint",

@@ -2,6 +2,15 @@ require("options")
 require("keymaps")
 require("autocommands")
 
+vim.api.nvim_create_autocmd("PackChanged", {
+    callback = function(ev)
+        local build = (ev.data.spec.data or {}).build
+        if build and ev.data.kind ~= "delete" then
+            vim.system(build, { cwd = ev.data.path }):wait()
+        end
+    end,
+})
+
 vim.pack.add({
     --Dependencies--------------------------------------------------------------
     "https://github.com/nvim-tree/nvim-web-devicons", -- lualine, fzf-lua, oil
@@ -42,6 +51,11 @@ vim.pack.add({
     "https://github.com/sindrets/diffview.nvim",
     -- Tmux
     "https://github.com/alexghergh/nvim-tmux-navigation",
+    -- Markdown preview
+    {
+        src = "https://github.com/toppair/peek.nvim",
+        data = { build = { "deno", "task", "--quiet", "build:fast" } },
+    },
 })
 vim.api.nvim_create_user_command("PackUpdate", function()
     vim.pack.update()
@@ -71,3 +85,4 @@ require("plugins.treesitter")
 require("plugins.lsp")
 require("plugins.git")
 require("plugins.nvim-tmux-navigation")
+require("plugins.peek")
