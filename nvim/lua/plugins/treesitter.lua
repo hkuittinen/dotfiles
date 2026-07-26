@@ -25,6 +25,7 @@ require("nvim-treesitter").install({
     "c",
     "gitignore",
     "astro",
+    "just"
 })
 
 vim.api.nvim_create_autocmd("FileType", {

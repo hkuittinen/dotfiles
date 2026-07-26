@@ -58,18 +58,25 @@ require("lazydev").setup({
     },
 })
 
+local function js_formatter(bufnr)
+    if vim.fs.root(bufnr, { "deno.json", "deno.jsonc" }) then
+        return { "deno_fmt" }
+    end
+    return { "prettierd" }
+end
+
 require("conform").setup({
     notify_on_error = true,
     formatters_by_ft = {
         lua = { "stylua" },
-        javascript = { "prettierd" },
-        javascriptreact = { "prettierd" },
-        typescript = { "prettierd" },
-        typescriptreact = { "prettierd" },
+        javascript = js_formatter,
+        javascriptreact = js_formatter,
+        typescript = js_formatter,
+        typescriptreact = js_formatter,
         html = { "prettierd" },
         css = { "prettierd" },
         yaml = { "prettierd" },
-        json = { "prettierd" },
+        json = js_formatter,
         go = { "goimports", "gofmt" },
         templ = { "templ" },
     },
