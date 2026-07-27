@@ -8,6 +8,7 @@ require("mason-tool-installer").setup({
         "templ",
         "denols",
         "astro",
+        "yamlls",
         -- Tools
         "stylua",
         "eslint",
@@ -15,6 +16,17 @@ require("mason-tool-installer").setup({
     },
 })
 require("mason-lspconfig").setup({})
+
+vim.lsp.config("yamlls", {
+    settings = {
+        yaml = {
+            format = { enable = true },
+        },
+    },
+})
+
+-- Nvim 0.12's builtin :lsp command makes nvim-lspconfig skip its :LspInfo alias
+vim.api.nvim_create_user_command("LspInfo", ":checkhealth vim.lsp", { desc = "Alias to `:checkhealth vim.lsp`" })
 
 vim.api.nvim_create_autocmd("LspAttach", {
     callback = function(args)
@@ -75,7 +87,7 @@ require("conform").setup({
         typescriptreact = js_formatter,
         html = { "prettierd" },
         css = { "prettierd" },
-        yaml = { "prettierd" },
+        yaml = { "prettierd", lsp_format = "prefer" },
         json = js_formatter,
         go = { "goimports", "gofmt" },
         templ = { "templ" },
@@ -83,5 +95,8 @@ require("conform").setup({
 })
 
 vim.keymap.set("", "<leader>F", function()
-    require("conform").format({ async = true })
+    require("conform").format({
+        async = true,
+        -- lsp_format = "fallback"
+    })
 end, { desc = "[F]ormat buffer" })

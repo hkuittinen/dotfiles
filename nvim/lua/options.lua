@@ -34,6 +34,12 @@ vim.opt.laststatus = 3
 
 vim.opt.mouse = "a"
 
+-- Over SSH there is no display server, so wl-copy/xclip silently fail;
+-- use OSC 52 to reach the local machine's clipboard through the terminal
+if vim.env.SSH_TTY then
+    vim.g.clipboard = "osc52"
+end
+
 vim.opt.undofile = true
 
 -- Set completeopt to have a better completion experience
