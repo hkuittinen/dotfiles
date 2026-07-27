@@ -41,6 +41,12 @@ local function stage_selected_lines()
 end
 
 require("diffview").setup({
+    view = {
+        default = {
+            layout = "diff2_vertical",
+            winbar_info = true,
+        },
+    },
     file_panel = {
         listing_style = "list",
         win_config = {
