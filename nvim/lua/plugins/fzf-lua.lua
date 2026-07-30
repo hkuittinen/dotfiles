@@ -1,18 +1,41 @@
 local fzf = require("fzf-lua")
 
+local exclude_dirs = {
+    ".git",
+    ".cache",
+    ".venv",
+    "node_modules",
+    "dist",
+    "target",
+}
+
+---@param exclude_flag string the tool's exclusion flag, "%s" is the directory
+local function excludes(exclude_flag)
+    return table.concat(
+        vim.tbl_map(function(dir)
+            return exclude_flag:format(dir)
+        end, exclude_dirs),
+        " "
+    )
+end
+
 fzf.setup({
     files = {
-        no_ignore = false, -- respect ".gitignore" by default
+        no_ignore = true, -- "Don't use .gitignore".
+        hidden = true, -- dotfiles
+        fd_opts = "--color=never --type f --type l " .. excludes("--exclude %s"),
+        rg_opts = "--color=never --files " .. excludes('-g "!%s"'),
     },
+    grep = {
+        no_ignore = true,
+        hidden = true,
+        rg_opts = "--column --line-number --no-heading --color=always --smart-case " .. "--max-columns=4096 " .. excludes('-g "!%s"') .. " -e",
+    },
+    -- Lua patterns.
     file_ignore_patterns = {
-        ".git/",
-        "node_modules",
-        "dist",
-        -- "build",
-        "target",
-        "package-lock.json",
-        "pnpm-lock.yaml",
-        "yarn.lock",
+        "package%-lock%.json$",
+        "pnpm%-lock%.yaml$",
+        "yarn%.lock$",
     },
     winopts = {
         preview = {
