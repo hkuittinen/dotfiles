@@ -43,7 +43,7 @@ end
 require("diffview").setup({
     view = {
         default = {
-            layout = "diff2_vertical",
+            layout = "diff2_horizontal",
             winbar_info = true,
         },
     },
