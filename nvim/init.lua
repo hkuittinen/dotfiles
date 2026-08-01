@@ -56,6 +56,8 @@ vim.pack.add({
         src = "https://github.com/toppair/peek.nvim",
         data = { build = { "deno", "task", "--quiet", "build:fast" } },
     },
+    -- Markdown in Neovim
+    "https://github.com/noisesfromspace/touchup.nvim",
 })
 vim.api.nvim_create_user_command("PackUpdate", function()
     vim.pack.update()
@@ -86,3 +88,4 @@ require("plugins.lsp")
 require("plugins.git")
 require("plugins.nvim-tmux-navigation")
 require("plugins.peek")
+require("plugins.touchup")
