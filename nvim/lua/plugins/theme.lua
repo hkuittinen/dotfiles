@@ -1,3 +1,5 @@
+vim.cmd.colorscheme("trimmed-chicken")
+
 function NumberedTabs()
     local s = ""
     for i = 1, vim.fn.tabpagenr("$") do
@@ -15,7 +17,7 @@ require("lualine").setup({
         section_separators = "",
     },
 })
---
+
 -- require("kanagawa").setup({
 --     colors = {
 --         theme = {

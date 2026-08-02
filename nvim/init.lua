@@ -17,7 +17,8 @@ vim.pack.add({
     "https://github.com/nvim-lua/plenary.nvim", -- harpoon
     --Plugins-------------------------------------------------------------------
     -- Theme
-    "https://github.com/rebelot/kanagawa.nvim",
+    -- "https://github.com/rebelot/kanagawa.nvim",
+    "git@github.com:hkuittinen/trimmed-chicken.nvim.git",
     "https://github.com/nvim-lualine/lualine.nvim",
     -- Indentation guides
     "https://github.com/lukas-reineke/indent-blankline.nvim",
@@ -88,4 +89,4 @@ require("plugins.lsp")
 require("plugins.git")
 require("plugins.nvim-tmux-navigation")
 require("plugins.peek")
-require("plugins.touchup")
+-- require("plugins.touchup")

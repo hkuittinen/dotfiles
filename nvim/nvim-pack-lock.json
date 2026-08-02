@@ -62,7 +62,7 @@
       "src": "https://github.com/windwp/nvim-autopairs"
     },
     "nvim-lspconfig": {
-      "rev": "9ae2b3b63b924b1329724dae76e9d2c5c40b389c",
+      "rev": "1c0d8f70dbc8827263eedc3cf7021ceba0f68689",
       "src": "https://github.com/neovim/nvim-lspconfig"
     },
     "nvim-tmux-navigation": {
@@ -70,7 +70,7 @@
       "src": "https://github.com/alexghergh/nvim-tmux-navigation"
     },
     "nvim-treesitter": {
-      "rev": "5397d99bec395940dec608b2b3689ab79951b79b",
+      "rev": "7b6cc8949f9999c5ed91436cbe24aa5f99c42025",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter",
       "version": "'main'"
     },
@@ -97,6 +97,10 @@
     "touchup.nvim": {
       "rev": "9410a8640262f9b43ce04b0779d2c66134ae311b",
       "src": "https://github.com/noisesfromspace/touchup.nvim"
+    },
+    "trimmed-chicken.nvim": {
+      "rev": "33758affa703c5c2250d8a31c453919100041512",
+      "src": "git@github.com:hkuittinen/trimmed-chicken.nvim.git"
     },
     "vim-fugitive": {
       "rev": "3b753cf8c6a4dcde6edee8827d464ba9b8c4a6f0",
