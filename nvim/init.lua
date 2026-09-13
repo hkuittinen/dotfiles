@@ -11,14 +11,19 @@ vim.api.nvim_create_autocmd("PackChanged", {
     end,
 })
 
+-- Temporary local checkout for theme development.
+-- vim.opt.runtimepath:prepend(vim.fn.expand("~/projects/trimmed-chicken.nvim"))
+
 vim.pack.add({
     --Dependencies--------------------------------------------------------------
     "https://github.com/nvim-tree/nvim-web-devicons", -- lualine, fzf-lua, oil
     "https://github.com/nvim-lua/plenary.nvim", -- harpoon
     --Plugins-------------------------------------------------------------------
     -- Theme
-    -- "https://github.com/rebelot/kanagawa.nvim",
-    "git@github.com:hkuittinen/trimmed-chicken.nvim.git",
+    "https://github.com/rebelot/kanagawa.nvim",
+    -- "git@github.com:hkuittinen/trimmed-chicken.nvim.git",
+    -- "https://github.com/eldritch-theme/eldritch.nvim",
+    "https://github.com/scottmckendry/cyberdream.nvim",
     "https://github.com/nvim-lualine/lualine.nvim",
     -- Indentation guides
     "https://github.com/lukas-reineke/indent-blankline.nvim",
