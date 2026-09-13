@@ -1,1 +1,1 @@
-ln -s ~/Projects/dotfiles/swaylock ~/.config/swaylock
+ln -s ~/projects/dotfiles/swaylock ~/.config/swaylock

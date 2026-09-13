@@ -1,5 +1,5 @@
 # tmux
 
 ```
-ln -s ~/Projects/dotfiles/tmux ~/.config/tmux
+ln -s ~/projects/dotfiles/tmux ~/.config/tmux
 ```

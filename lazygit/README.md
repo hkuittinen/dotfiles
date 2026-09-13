@@ -1,5 +1,5 @@
 # Lazygit
 
 ```
-ln -s ~/Projects/dotfiles/lazygit ~/.config/lazygit
+ln -s ~/projects/dotfiles/lazygit ~/.config/lazygit
 ```

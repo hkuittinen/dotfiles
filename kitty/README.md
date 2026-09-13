@@ -1,6 +1,5 @@
 # Kitty
 
 ```
-ln -s ~/Projects/dotfiles/kitty ~/.config/kitty
+ln -s ~/projects/dotfiles/kitty ~/.config/kitty
 ```
-

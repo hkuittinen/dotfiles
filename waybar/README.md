@@ -1,4 +1,3 @@
 ```
-ln -s ~/Projects/dotfiles/waybar ~/.config/waybar
+ln -s ~/projects/dotfiles/waybar ~/.config/waybar
 ```
-

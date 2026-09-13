@@ -1,2 +1,1 @@
-ln -s ~/Projects/dotfiles/foot ~/.config/foot
-
+ln -s ~/projects/dotfiles/foot ~/.config/foot

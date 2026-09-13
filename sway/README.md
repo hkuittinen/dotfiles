@@ -1,2 +1,1 @@
-ln -s ~/Projects/dotfiles/sway ~/.config/sway
-
+ln -s ~/projects/dotfiles/sway ~/.config/sway

@@ -1,6 +1,6 @@
 # zsh
 
 ```
-ln -s ~/Projects/dotfiles/zsh/.zshenv ~/.zshenv
-ln -s ~/Projects/dotfiles/zsh ~/.config/zsh
+ln -s ~/projects/dotfiles/zsh/.zshenv ~/.zshenv
+ln -s ~/projects/dotfiles/zsh ~/.config/zsh
 ```

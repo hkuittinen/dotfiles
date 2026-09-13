@@ -1,4 +1,3 @@
 ```
-ln -s ~/Projects/dotfiles/fontconfig ~/.config/fontconfig
+ln -s ~/projects/dotfiles/fontconfig ~/.config/fontconfig
 ```
-
