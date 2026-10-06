@@ -29,3 +29,13 @@ alias bluetooth="bluetui"
 alias usb="bashmount"
 
 alias gamecube="dolphin-emu"
+
+# Shut down after confirmation (Enter defaults to yes)
+off() {
+  local reply
+  read -k 1 "reply?Are you sure? (Y/n) "
+  [[ $reply != $'\n' ]] && echo
+  case $reply in
+    [Yy]|$'\n') systemctl poweroff ;;
+  esac
+}
