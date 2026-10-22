@@ -1,4 +1,4 @@
-model = "gpt-5.6-sol"
+model = "gpt-6-astra"
 model_reasoning_effort = "high"
 approvals_reviewer = "user"
 plan_mode_reasoning_effort = "high"
@@ -6,9 +6,11 @@ plan_mode_reasoning_effort = "high"
 [tui]
 vim_mode_default = true
 alternate_screen = "never"
+screen_reader_detection_done = true
 
 [tui.model_availability_nux]
 gpt-6-astra = 4
+"gpt-6.1-sol" = 4
 
 [notice]
 hide_rate_limit_model_nudge = true
