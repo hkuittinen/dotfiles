@@ -1,0 +1,13 @@
+[include]
+    path = user  # [user] name and email, kept out of the repo
+[init]
+	defaultBranch = main
+# Delta https://dandavison.github.io/delta/get-started.html
+[core]
+    pager = delta --navigate  # use n and N to move between diff sections; not under [delta] so lazygit's delta skips it
+[interactive]
+    diffFilter = delta --color-only
+[delta]
+    dark = true      # or `light = true`, or omit for auto-detection
+[merge]
+    conflictStyle = zdiff3

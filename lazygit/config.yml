@@ -4,5 +4,7 @@ gui:
 git:
   diffRenderers:
     - command: delta --{{colorScheme}} --paging=never
+    - command: delta --{{colorScheme}} --paging=never --side-by-side
+      name: delta side-by-side
     - type: rawGit # git's default diff, cycle with |
       name: default
