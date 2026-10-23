@@ -13,4 +13,4 @@ require("no-neck-pain").setup({
         -- },
     },
 })
-vim.keymap.set("n", "<leader><CR>", "<cmd>NoNeckPain<cr>", { desc = "Center buffer." })
+vim.keymap.set("n", "<leader>\\", "<cmd>NoNeckPain<cr>", { desc = "Center buffer." })

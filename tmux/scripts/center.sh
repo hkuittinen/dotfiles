@@ -29,8 +29,9 @@ if [ "$pad" -lt 10 ]; then
 fi
 
 for side in -b ''; do
-	# Not an empty '' pane: those close when the creating client exits.
-	p=$(tmux split-window -hd $side -l "$pad" -t "$cur" -P -F '#{pane_id}' 'exec sleep infinity')
+	# Pads run a command that never exits. An empty '' pane would close when
+	# the creating client exits, and macOS's sleep rejects `infinity`.
+	p=$(tmux split-window -hd $side -l "$pad" -t "$cur" -P -F '#{pane_id}' 'exec tail -f /dev/null')
 	tmux set -p -t "$p" @center_pad 1
 	tmux select-pane -d -t "$p"
 done
