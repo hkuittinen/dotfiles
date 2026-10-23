@@ -9,5 +9,10 @@
     diffFilter = delta --color-only
 [delta]
     dark = true      # or `light = true`, or omit for auto-detection
+    line-numbers = true
+    hyperlinks = true
+[diff]
+    colorMoved = default
+    algorithm = histogram
 [merge]
     conflictStyle = zdiff3
