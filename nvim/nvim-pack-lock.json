@@ -5,23 +5,19 @@
       "src": "https://github.com/stevearc/conform.nvim"
     },
     "cyberdream.nvim": {
-      "rev": "642c55ad2225f9f4809905918121b2c6d252ad58",
+      "rev": "81b3e39ceb87db2987255123af3212beeb75bf6d",
       "src": "https://github.com/scottmckendry/cyberdream.nvim"
     },
     "diffview.nvim": {
       "rev": "4516612fe98ff56ae0415a259ff6361a89419b0a",
       "src": "https://github.com/sindrets/diffview.nvim"
     },
-    "eldritch.nvim": {
-      "rev": "c9131a5a11f00a2f428f563a4eb2c4aeb680d963",
-      "src": "https://github.com/eldritch-theme/eldritch.nvim"
-    },
     "fzf-lua": {
-      "rev": "5dca84ef44f37b960a128a43d044ee348ff86fb4",
+      "rev": "5b88d6f0af7fcb41d4a8bb340bf70d7e3824ee9d",
       "src": "https://github.com/ibhagwan/fzf-lua"
     },
     "gitsigns.nvim": {
-      "rev": "683137003522aebd6948358334164a6ba2ca7cd5",
+      "rev": "d4854fa9a94b5c8b37dd209fb4a19e98e764186f",
       "src": "https://github.com/lewis6991/gitsigns.nvim"
     },
     "guess-indent.nvim": {
@@ -50,7 +46,7 @@
       "src": "https://github.com/nvim-lualine/lualine.nvim"
     },
     "mason-lspconfig.nvim": {
-      "rev": "c4ef013d41f6db041b283eef55a63e579d76763f",
+      "rev": "a338f44149f5673882c32629697d67b0c0547aec",
       "src": "https://github.com/mason-org/mason-lspconfig.nvim"
     },
     "mason-tool-installer.nvim": {
@@ -78,7 +74,7 @@
       "src": "https://github.com/alexghergh/nvim-tmux-navigation"
     },
     "nvim-treesitter": {
-      "rev": "29212d826054bb2948fa9d3a99eca9bf6a050eb2",
+      "rev": "a2f694478be07f89c2d03cc17858a8745a400c4b",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter",
       "version": "'main'"
     },
@@ -105,14 +101,6 @@
     "touchup.nvim": {
       "rev": "d32c23516e29b72075bfe0fb98d4aaf20790ac2c",
       "src": "https://github.com/noisesfromspace/touchup.nvim"
-    },
-    "trimmed-chicken.nvim": {
-      "rev": "821ee6f9499c74450c191034556c516946a7609b",
-      "src": "git@github.com:hkuittinen/trimmed-chicken.nvim.git"
-    },
-    "vim-firestore": {
-      "rev": "417d41ba56c54cb21fab1f4b01c8ba4deed6bbe0",
-      "src": "https://github.com/delphinus/vim-firestore"
     },
     "vim-fugitive": {
       "rev": "3b753cf8c6a4dcde6edee8827d464ba9b8c4a6f0",
