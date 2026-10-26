@@ -1,5 +1,8 @@
 require("no-neck-pain").setup({
     width = 100,
+    autocmds = {
+        enableOnVimEnter = true,
+    },
     buffers = {
         wo = {
             fillchars = "eob: ",
