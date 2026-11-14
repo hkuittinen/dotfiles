@@ -15,7 +15,7 @@ setopt HIST_IGNORE_DUPS
 source "$ZDOTDIR/completions/completion.zsh"
 
 # Node version manager
-eval "$(fnm env --use-on-cd --shell zsh)"
+(( $+commands[fnm] )) && eval "$(fnm env --use-on-cd --shell zsh)"
 
 # Aliases
 alias {vi,vim}="nvim"
