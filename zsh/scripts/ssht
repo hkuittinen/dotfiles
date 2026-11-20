@@ -1,0 +1,12 @@
+#!/usr/bin/env zsh
+# ssh into a host and attach to (or create) its tmux session "main".
+# Use M-Space to toggle passing keys through to the remote tmux.
+
+if [[ $# -lt 1 ]]; then
+    echo "usage: ssht <host> [ssh options...]" >&2
+    exit 1
+fi
+
+host=$1
+shift
+exec ssh -t "$@" "$host" 'tmux new -A -s terminal'

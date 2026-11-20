@@ -1,0 +1,9 @@
+# Personal hosts, not tracked in this repo (see README)
+Include ~/projects/dotfiles/ssh/hosts
+
+# Set the terminal (tmux pane) title to the host name as typed, for the tmux
+# status bar. Only when stdout is a terminal, so git/scp/rsync over ssh are
+# unaffected.
+Host *
+    PermitLocalCommand yes
+    LocalCommand [ -t 1 ] && printf '\033]2;%n\007'
